@@ -17,6 +17,7 @@ def main():
     app = ApplicationBuilder()\
         .token(TOKEN)\
         .rate_limiter(AIORateLimiter())\
+        .post_init(on_startup)\
         .build()
 
     app.add_handler(CommandHandler("start", start))
@@ -25,8 +26,7 @@ def main():
     app.run_webhook(
         listen="0.0.0.0",
         port=int(os.environ.get("PORT", 8080)),
-        webhook_url=os.getenv("WEBHOOK_URL"),
-        on_startup=on_startup
+        webhook_url=os.getenv("WEBHOOK_URL")
     )
 
 if __name__ == "__main__":
