@@ -1,7 +1,7 @@
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, AIORateLimiter
-from handlers import start, handle_message
 import os
 import asyncio
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, AIORateLimiter
+from handlers import start, handle_message
 
 async def on_startup(app):
     webhook_url = os.getenv("WEBHOOK_URL")
@@ -28,11 +28,19 @@ async def main():
     # إعداد الـ webhook قبل التشغيل
     await on_startup(app)
 
+    # تشغيل الـ webhook مع الإعدادات
     await app.run_webhook(
         listen="0.0.0.0",
-        port=int(os.environ.get("PORT", 8080)),
+        port=int(os.getenv("PORT", 8080)),
         webhook_url=os.getenv("WEBHOOK_URL")
     )
 
-if __name__ == "__main__":
-    asyncio.run(main())
+if _name_ == "_main_":
+    # تشغيل الحدث الرئيسي بشكل آمن لتجنب خطأ loop is already running
+    try:
+        asyncio.run(main())
+    except RuntimeError as e:
+        if "event loop is running" in str(e):
+            print("⚠ حدث خطأ: الحلقة الحدثية تعمل بالفعل")
+        else:
+            raise
