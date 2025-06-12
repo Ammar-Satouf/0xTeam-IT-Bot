@@ -1,15 +1,15 @@
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 from handlers import start, handle_message
 import os
+import asyncio
 
-def main():
-    TOKEN = os.getenv("BOT_TOKEN")
-    PORT = int(os.environ.get("PORT", "8443"))  # Render يعطي هذا تلقائياً
-    WEBHOOK_PATH = os.getenv("WEBHOOK_PATH", "/webhook")  # مسار سري يُفضل تغييره
-    APP_URL = os.getenv("APP_URL")  # رابط تطبيقك على Render (بدون / في النهاية)
+PORT = int(os.environ.get("PORT", 8443))  # يستخدمه Render
+TOKEN = os.getenv("BOT_TOKEN")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")  # رابط موقعك على Render (بصيغة https://your-app-name.onrender.com)
 
-    if not TOKEN or not APP_URL:
-        print("⚠ يرجى التأكد من وجود BOT_TOKEN و APP_URL في متغيرات البيئة.")
+async def main():
+    if not TOKEN or not WEBHOOK_URL:
+        print("⚠ تأكد من وجود BOT_TOKEN و WEBHOOK_URL في متغيرات البيئة")
         return
 
     app = ApplicationBuilder().token(TOKEN).build()
@@ -17,13 +17,18 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
 
-    print(f"✅ Webhook يعمل الآن على: {APP_URL}{WEBHOOK_PATH}")
+    await app.start()
+    await app.bot.set_webhook(f"{WEBHOOK_URL}/webhook")
 
-    app.run_webhook(
+    print("✅ البوت يعمل باستخدام Webhook...")
+    await app.updater.start_webhook(
         listen="0.0.0.0",
         port=PORT,
-        webhook_url=f"{APP_URL}{WEBHOOK_PATH}"
+        url_path="webhook",
+        webhook_url=f"{WEBHOOK_URL}/webhook"
     )
 
-if _name_ == "_main_":
-    main()
+    await app.updater.idle()
+
+if __name__ == "__main__":
+    asyncio.run(main())
