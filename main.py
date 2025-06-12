@@ -22,25 +22,19 @@ async def main():
         .rate_limiter(AIORateLimiter())\
         .build()
 
+    # إضافة معالجات الأوامر والرسائل
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
 
-    # إعداد الـ webhook قبل التشغيل
+    # تهيئة webhook
     await on_startup(app)
 
-    # تشغيل الـ webhook مع الإعدادات
+    # تشغيل البوت كـ webhook server
     await app.run_webhook(
         listen="0.0.0.0",
-        port=int(os.getenv("PORT", 8080)),
+        port=int(os.environ.get("PORT", 8080)),
         webhook_url=os.getenv("WEBHOOK_URL")
     )
 
 if _name_ == "_main_":
-    # تشغيل الحدث الرئيسي بشكل آمن لتجنب خطأ loop is already running
-    try:
-        asyncio.run(main())
-    except RuntimeError as e:
-        if "event loop is running" in str(e):
-            print("⚠ حدث خطأ: الحلقة الحدثية تعمل بالفعل")
-        else:
-            raise
+    asyncio.run(main())
