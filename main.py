@@ -1,14 +1,12 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
 from handlers import start, handle_message
-from dotenv import load_dotenv
 import os
 
 def main():
-    load_dotenv()
     TOKEN = os.getenv("BOT_TOKEN")
 
     if not TOKEN:
-        print("⚠ لم يتم العثور على التوكن في ملف .env")
+        print("⚠ لم يتم العثور على التوكن في متغيرات البيئة")
         return
 
     app = ApplicationBuilder().token(TOKEN).build()
