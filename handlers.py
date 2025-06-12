@@ -136,7 +136,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "الفصل الثاني": "2"
         }
         context.user_data['term'] = term_map[text]
-        if context.user_data['year'] == "1" and context.user_data['term'] == "2":
+        if context.user_data.get('year') == "1" and context.user_data.get('term') == "2":
             subjects = [
                 "تحليل 2",
                 "برمجة 2",
@@ -221,6 +221,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
+    # في حالة النص غير معروف
     await update.message.reply_text(
         "الرجاء اختيار خيار صحيح من القائمة.",
         reply_markup=main_menu_keyboard()
