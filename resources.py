@@ -3,7 +3,7 @@ resources = {
         "2": {
             "theoretical": {
                 "جبر خطي": {
-                    "gate": [0],
+                    "gate": [0,],
                     "komit": [5, 7, 8, 9, 10],
                     "student_written": [43, 44, 45, 46, 47, 48, 49],
                     "summaries": [72, 73, 74, 75, 76],
@@ -14,12 +14,12 @@ resources = {
                     "gate": [0],
                     "komit": [45, 46, 47],
                     "student_written": [0],
-                    "summaries": [9, 10],
+                    "summaries": [9,10],
                     "exams": [0],
                     "notes": [37],
                 },
                 "برمجة 2": {
-                    "gate": [0],
+                    "gate": [22, 23, 24, 25, 26],
                     "komit": [17, 18, 19, 20, 21, 22],
                     "student_written": [58, 59, 60, 61, 62, 63, 64],
                     "summaries": [0],
@@ -45,7 +45,7 @@ resources = {
             },
             "practical": {
                 "جبر خطي": {
-                    "gate": [0],
+                    "gate": [30, 31],
                     "komit": [12, 13, 14, 15],
                     "student_written": [0],
                     "summaries": [0],
@@ -61,7 +61,7 @@ resources = {
                     "notes": [0],
                 },
                 "برمجة 2": {
-                    "gate": [0],
+                    "gate": [28],
                     "komit": [24, 25, 26, 27, 28],
                     "student_written": [0],
                     "summaries": [0],
