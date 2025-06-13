@@ -201,7 +201,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if year == "1" and term == "2":
             subjects = [
-                " تحليل 2",
+                "تحليل 2",
                 "برمجة 2",
                 "فيزياء انصاف نواقل",
                 "جبر خطى",
@@ -215,7 +215,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     subjects_list = [
-        " تحليل 2",
+        "تحليل 2",
         "برمجة 2",
         "فيزياء انصاف نواقل",
         "جبر خطى",
