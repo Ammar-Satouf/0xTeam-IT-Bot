@@ -116,16 +116,26 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
 
-    if text in ["🏠 القائمة الرئيسية", "🔙 رجوع"]:
+    if text == "🔙 رجوع":
+        previous_step = context.user_data.get("previous_step")
+        if previous_step:
+            await previous_step(update, context)
+        else:
+            await start(update, context)
+        return
+
+    if text == "🏠 القائمة الرئيسية":
         await start(update, context)
         return
 
     if text == "📘 المواد الدراسية":
+        context.user_data["previous_step"] = start
         await update.message.reply_text("اختر السنة الدراسية :",
                                         reply_markup=year_keyboard())
         return
 
     if text == "📤 آلية تقديم اعتراض":
+        context.user_data["previous_step"] = start
         await update.message.reply_text(
             "📣 إعلان بخصوص الاعتراض على النتائج:\n\n"
             "بعد صدور النتائج، يُفتح باب تقديم طلبات الاعتراض لفترة محددة. آلية الاعترض كالتالي:\n"
@@ -140,6 +150,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if text == "📩 تواصل معنا":
+        context.user_data["previous_step"] = start
         await update.message.reply_text(
             "📨 تقدر تتواصل معنا لأي استفسار أو اقتراح:\n\n"
             "👨‍💻 المطور: @Ammarsa51\n"
@@ -149,6 +160,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if text == "🧠 عن البوت":
+        context.user_data["previous_step"] = start
         await update.message.reply_text(
             "📚 بوت تعليمي مقدم من فريق زيرو ✖ تيم، هدفه إيصال الملفات الدراسية بطريقة سهلة.\n"
             "نشتغل على دعم باقي السنوات وتحسين الأداء بشكل دوري.\n\n"
@@ -157,6 +169,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if text == "📗 مقرر الثقافة المؤقت":
+        context.user_data["previous_step"] = start
         cid = channel_ids.get("komit")
         msg_id = temporary_culture_doc
 
@@ -168,18 +181,19 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await context.bot.copy_message(chat_id=update.effective_chat.id,
                                        from_chat_id=cid,
-                                       message_id=msg_id)
+                                       message_id=msg_id,
+                                       protect_content=True)
         await update.message.reply_text(
             "🎯 تم إرسال مقرر الثقافة المؤقت بنجاح.\nلا تنسَ تشارك البوت مع زملائك ❤",
             reply_markup=main_menu_keyboard())
         return
 
     if text in [
-            "السنة الأولى",
-            "السنة الثانية",
-            "السنة الثالثة",
-            "السنة الرابعة",
-            "السنة الخامسة",
+        "السنة الأولى",
+        "السنة الثانية",
+        "السنة الثالثة",
+        "السنة الرابعة",
+        "السنة الخامسة",
     ]:
         year_map = {
             "السنة الأولى": "1",
@@ -189,6 +203,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "السنة الخامسة": "5",
         }
         context.user_data["year"] = year_map[text]
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر السنة الدراسية :", reply_markup=year_keyboard())
         await update.message.reply_text("اختر الفصل :",
                                         reply_markup=term_keyboard())
         return
@@ -196,6 +211,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if text in ["الفصل الأول", "الفصل الثاني"]:
         term_map = {"الفصل الأول": "1", "الفصل الثاني": "2"}
         context.user_data["term"] = term_map[text]
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر الفصل :", reply_markup=term_keyboard())
+
         year = context.user_data.get("year")
         term = context.user_data.get("term")
 
@@ -204,39 +221,36 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 "تحليل 2",
                 "برمجة 2",
                 "فيزياء انصاف نواقل",
-                "جبر خطى",
+                "جبر خطي",
                 "لغة انجليزية 2",
             ]
-            await update.message.reply_text(
-                "اختر المادة :", reply_markup=subjects_keyboard(subjects))
+            await update.message.reply_text("اختر المادة :", reply_markup=subjects_keyboard(subjects))
         else:
-            await update.message.reply_text("لا توجد مواد حالياً.",
-                                            reply_markup=main_menu_keyboard())
+            await update.message.reply_text("لا توجد مواد حالياً.", reply_markup=main_menu_keyboard())
         return
 
     subjects_list = [
         "تحليل 2",
         "برمجة 2",
         "فيزياء انصاف نواقل",
-        "جبر خطى",
+        "جبر خطي",
         "لغة انجليزية 2",
     ]
     if text in subjects_list:
         context.user_data["subject"] = text
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر المادة :", reply_markup=subjects_keyboard(subjects_list))
+
         if text == "لغة انجليزية 2":
             context.user_data["section"] = "theoretical"
-            await update.message.reply_text(
-                "اختر نوع المحتويات :", reply_markup=content_type_keyboard())
+            await update.message.reply_text("اختر نوع المحتويات :", reply_markup=content_type_keyboard())
         else:
-            await update.message.reply_text("اختر القسم :",
-                                            reply_markup=section_keyboard())
+            await update.message.reply_text("اختر القسم :", reply_markup=section_keyboard())
         return
 
     if text in ["📘 القسم النظري", "🧪 القسم العملي"]:
-        context.user_data[
-            "section"] = "theoretical" if text == "📘 القسم النظري" else "practical"
-        await update.message.reply_text("اختر نوع المحتويات :",
-                                        reply_markup=content_type_keyboard())
+        context.user_data["section"] = "theoretical" if text == "📘 القسم النظري" else "practical"
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر القسم :", reply_markup=section_keyboard())
+        await update.message.reply_text("اختر نوع المحتويات :", reply_markup=content_type_keyboard())
         return
 
     content_map = {
@@ -276,7 +290,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 continue
             await context.bot.copy_message(chat_id=update.effective_chat.id,
                                            from_chat_id=cid,
-                                           message_id=mid)
+                                           message_id=mid,
+                                           protect_content=True)
 
         await update.message.reply_text(
             "🎯 تم إرسال الملفات بنجاح!\nلا تنسَ أن تشارك البوت مع زملائك ❤",
@@ -284,4 +299,4 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     await update.message.reply_text("❗ الرجاء اختيار خيار صحيح.",
-     reply_markup=main_menu_keyboard())
+                                    reply_markup=main_menu_keyboard())
