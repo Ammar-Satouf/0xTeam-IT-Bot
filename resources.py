@@ -86,7 +86,7 @@ channel_ids = {
     "komit": -1002883141998,
     "student_written": -1002701154329,
     "summaries": -1002890234972,
-    "exams": -1002834270732,
+    "exams": -1002449310532,
     "notes": -1002834270732,
 }
 temporary_culture_doc = 51
