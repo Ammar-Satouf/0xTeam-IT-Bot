@@ -14,7 +14,7 @@ resources = {
                     "gate": [0],
                     "komit": [45, 46, 47],
                     "student_written": [0],
-                    "summaries": [9,10],
+                    "summaries": [11, 12],
                     "exams": [0],
                     "notes": [37],
                 },
