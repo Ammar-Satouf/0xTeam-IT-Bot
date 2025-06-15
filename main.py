@@ -1,5 +1,5 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
-from handlers import start, handle_message
+from handlers import start, handle_message, notify_update_to_users
 import os
 from keep_alive import keep_alive  
 
