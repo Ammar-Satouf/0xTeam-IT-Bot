@@ -3,7 +3,8 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton, Update
 from telegram.ext import ContextTypes
 from resources import resources, channel_ids, temporary_culture_doc
 from datetime import datetime
-from notified_users import load_notified_users, save_notified_users
+from db import load_notified_users, add_notified_user
+
 
 # إضافة زر تفعيل الإشعارات للقائمة الرئيسية
 def main_menu_keyboard():
@@ -20,46 +21,67 @@ def main_menu_keyboard():
         one_time_keyboard=True,
     )
 
+
 def year_keyboard():
     return ReplyKeyboardMarkup(
         [
-            [KeyboardButton("السنة الأولى"), KeyboardButton("السنة الثانية")],
-            [KeyboardButton("السنة الثالثة"), KeyboardButton("السنة الرابعة")],
+            [KeyboardButton("السنة الأولى"),
+             KeyboardButton("السنة الثانية")],
+            [KeyboardButton("السنة الثالثة"),
+             KeyboardButton("السنة الرابعة")],
             [KeyboardButton("السنة الخامسة")],
-            [KeyboardButton("🔙 رجوع"), KeyboardButton("🏠 القائمة الرئيسية")],
+            [KeyboardButton("🔙 رجوع"),
+             KeyboardButton("🏠 القائمة الرئيسية")],
         ],
         resize_keyboard=True,
     )
+
 
 def term_keyboard():
     return ReplyKeyboardMarkup(
         [
-            [KeyboardButton("الفصل الأول ⚡"), KeyboardButton("الفصل الثاني 🔥")],
-            [KeyboardButton("🔙 رجوع"), KeyboardButton("🏠 القائمة الرئيسية")],
+            [
+                KeyboardButton("الفصل الأول ⚡"),
+                KeyboardButton("الفصل الثاني 🔥")
+            ],
+            [KeyboardButton("🔙 رجوع"),
+             KeyboardButton("🏠 القائمة الرئيسية")],
         ],
         resize_keyboard=True,
     )
+
 
 def section_keyboard():
     return ReplyKeyboardMarkup(
         [
-            [KeyboardButton("📘 القسم النظري"), KeyboardButton("🧪 القسم العملي")],
-            [KeyboardButton("🔙 رجوع"), KeyboardButton("🏠 القائمة الرئيسية")],
+            [
+                KeyboardButton("📘 القسم النظري"),
+                KeyboardButton("🧪 القسم العملي")
+            ],
+            [KeyboardButton("🔙 رجوع"),
+             KeyboardButton("🏠 القائمة الرئيسية")],
         ],
         resize_keyboard=True,
     )
 
+
 def content_type_keyboard():
     return ReplyKeyboardMarkup(
         [
-            [KeyboardButton("📚 محاضرات Gate"), KeyboardButton("📚 محاضرات الكميت")],
+            [
+                KeyboardButton("📚 محاضرات Gate"),
+                KeyboardButton("📚 محاضرات الكميت")
+            ],
             [KeyboardButton("✍ محاضرات كتابة زميلنا / دكتور المادة")],
-            [KeyboardButton("📄 ملخصات"), KeyboardButton("❓ أسئلة دورات")],
+            [KeyboardButton("📄 ملخصات"),
+             KeyboardButton("❓ أسئلة دورات")],
             [KeyboardButton("📝 ملاحظات المواد")],
-            [KeyboardButton("🔙 رجوع"), KeyboardButton("🏠 القائمة الرئيسية")],
+            [KeyboardButton("🔙 رجوع"),
+             KeyboardButton("🏠 القائمة الرئيسية")],
         ],
         resize_keyboard=True,
     )
+
 
 def subjects_keyboard(subjects):
     keyboard = []
@@ -69,9 +91,12 @@ def subjects_keyboard(subjects):
             row.append(KeyboardButton(subjects[i + 1]))
         keyboard.append(row)
 
-    keyboard.append([KeyboardButton("🔙 رجوع"), KeyboardButton("🏠 القائمة الرئيسية")])
+    keyboard.append(
+        [KeyboardButton("🔙 رجوع"),
+         KeyboardButton("🏠 القائمة الرئيسية")])
 
     return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+
 
 # التحية حسب الوقت
 def get_greeting():
@@ -83,14 +108,22 @@ def get_greeting():
     else:
         return "سهرة سعيدة 🌙"
 
+
 # إرسال إشعارات التحديثات للمستخدمين المفعّلين
 async def notify_update_to_users(bot):
-    users = load_notified_users()
-    for user_id in users:
-        try:
-            await bot.send_message(chat_id=user_id, text="🔔 تم تحديث محتوى البوت بنجاح! يمكنك الآن استعراض المواد الجديدة.")
-        except Exception as e:
-            print(f"Error notifying user {user_id}: {e}")
+    try:
+        users = await load_notified_users()
+        for user_id in users:
+            try:
+                await bot.send_message(
+                    chat_id=user_id,
+                    text="🔔 تم تحديث محتوى البوت بنجاح! يمكنك الآن استعراض المواد الجديدة."
+                )
+            except Exception as e:
+                print(f"Error notifying user {user_id}: {e}")
+    except Exception as e:
+        print(f"Database error in notify_update_to_users: {e}")
+
 
 # 🚀 البداية
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -105,6 +138,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     context.user_data.clear()
 
+
 # 📩 المعالجة الرئيسية
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
@@ -112,17 +146,31 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # تفعيل إشعارات التحديثات
     if text == "🔔 تفعيل إشعارات التحديثات":
-        users = load_notified_users()
-        if user_id not in users:
-            users.append(user_id)
-            save_notified_users(users)
+        try:
+            from db import is_user_notified
+            is_already_notified = await is_user_notified(user_id)
+
+            if not is_already_notified:
+                success = await add_notified_user(user_id)
+                if success:
+                    await update.message.reply_text(
+                        "✅ تم تفعيل إشعارات التحديثات بنجاح. ستتلقى تنبيهات عند تحديث محتوى البوت.",
+                        reply_markup=main_menu_keyboard(),
+                    )
+                else:
+                    await update.message.reply_text(
+                        "⚠️ حدث خطأ في تفعيل الإشعارات. يرجى المحاولة لاحقاً.",
+                        reply_markup=main_menu_keyboard(),
+                    )
+            else:
+                await update.message.reply_text(
+                    "ℹ أنت مفعل الإشعارات سابقاً.",
+                    reply_markup=main_menu_keyboard(),
+                )
+        except Exception as e:
+            print(f"Database error: {e}")
             await update.message.reply_text(
-                "✅ تم تفعيل إشعارات التحديثات بنجاح. ستتلقى تنبيهات عند تحديث محتوى البوت.",
-                reply_markup=main_menu_keyboard(),
-            )
-        else:
-            await update.message.reply_text(
-                "ℹ أنت مفعل الإشعارات سابقاً.",
+                "⚠️ حدث خطأ في تفعيل الإشعارات. يرجى المحاولة لاحقاً.",
                 reply_markup=main_menu_keyboard(),
             )
         return
@@ -143,7 +191,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # المواد الدراسية - بداية اختيار السنة
     if text == "📘 المواد الدراسية":
         context.user_data["previous_step"] = start
-        await update.message.reply_text("اختر السنة الدراسية:", reply_markup=year_keyboard())
+        await update.message.reply_text("اختر السنة الدراسية:",
+                                        reply_markup=year_keyboard())
         return
 
     # آلية تقديم اعتراض
@@ -199,9 +248,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
 
-        await context.bot.copy_message(
-            chat_id=update.effective_chat.id, from_chat_id=cid, message_id=msg_id, protect_content=True
-        )
+        await context.bot.copy_message(chat_id=update.effective_chat.id,
+                                       from_chat_id=cid,
+                                       message_id=msg_id,
+                                       protect_content=True)
         await update.message.reply_text(
             "🎯 تم إرسال مقرر الثقافة المؤقت بنجاح.\nلا تنسَ تشارك البوت مع زملائك ❤",
             reply_markup=main_menu_keyboard(),
@@ -219,25 +269,34 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if text in years_map:
         context.user_data["year"] = text
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر السنة الدراسية:", reply_markup=year_keyboard())
-        await update.message.reply_text("اختر الفصل الدراسي:", reply_markup=term_keyboard())
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
+            "اختر السنة الدراسية:", reply_markup=year_keyboard())
+        await update.message.reply_text("اختر الفصل الدراسي:",
+                                        reply_markup=term_keyboard())
         return
 
     # اختيار الفصل الدراسي
-    term_map = {"الفصل الأول ⚡": "الفصل الأول", "الفصل الثاني 🔥": "الفصل الثاني"}
+    term_map = {
+        "الفصل الأول ⚡": "الفصل الأول",
+        "الفصل الثاني 🔥": "الفصل الثاني"
+    }
     if text in term_map:
         year = context.user_data.get("year")
         term = term_map[text]
         context.user_data["term"] = term
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر الفصل الدراسي:", reply_markup=term_keyboard())
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
+            "اختر الفصل الدراسي:", reply_markup=term_keyboard())
 
         if year not in resources or term not in resources[year]:
-            await update.message.reply_text("لا توجد مواد لهذا الفصل.", reply_markup=main_menu_keyboard())
+            await update.message.reply_text("لا توجد مواد لهذا الفصل.",
+                                            reply_markup=main_menu_keyboard())
             return
 
         # جلب المواد من النظري والعملي مع دمج وإزالة التكرار
-        theoretical_subjects = list(resources[year][term].get("theoretical", {}).keys())
-        practical_subjects = list(resources[year][term].get("practical", {}).keys())
+        theoretical_subjects = list(resources[year][term].get(
+            "theoretical", {}).keys())
+        practical_subjects = list(resources[year][term].get("practical",
+                                                            {}).keys())
 
         all_subjects_set = set(theoretical_subjects + practical_subjects)
         all_subjects = sorted(all_subjects_set)
@@ -246,10 +305,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         subjects = [prefix + subj for subj in all_subjects]
 
         if not subjects:
-            await update.message.reply_text("لا توجد مواد لهذا الفصل.", reply_markup=main_menu_keyboard())
+            await update.message.reply_text("لا توجد مواد لهذا الفصل.",
+                                            reply_markup=main_menu_keyboard())
             return
 
-        await update.message.reply_text("اختر المادة:", reply_markup=subjects_keyboard(subjects))
+        await update.message.reply_text(
+            "اختر المادة:", reply_markup=subjects_keyboard(subjects))
         return
 
     # دالة لإزالة الإيموجي من بداية اسم المادة
@@ -262,7 +323,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if year and term:
         subjects_all = []
         for section_key in ["theoretical", "practical"]:
-            subjects_all += list(resources.get(year, {}).get(term, {}).get(section_key, {}).keys())
+            subjects_all += list(
+                resources.get(year, {}).get(term, {}).get(section_key,
+                                                          {}).keys())
         subjects_all_set = set(subjects_all)
     else:
         subjects_all_set = set()
@@ -270,13 +333,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if strip_emoji(text) in subjects_all_set:
         subj_clean = strip_emoji(text)
         context.user_data["subject"] = subj_clean
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text("اختر المادة:", reply_markup=subjects_keyboard(sorted(subjects_all_set)))
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
+            "اختر المادة:",
+            reply_markup=subjects_keyboard(sorted(subjects_all_set)))
 
         # نتحقق الأقسام المتوفرة للمادة
         available_sections = []
-        if subj_clean in resources.get(year, {}).get(term, {}).get("theoretical", {}):
+        if subj_clean in resources.get(year,
+                                       {}).get(term,
+                                               {}).get("theoretical", {}):
             available_sections.append("theoretical")
-        if subj_clean in resources.get(year, {}).get(term, {}).get("practical", {}):
+        if subj_clean in resources.get(year, {}).get(term,
+                                                     {}).get("practical", {}):
             available_sections.append("practical")
 
         if len(available_sections) == 1:
@@ -334,7 +402,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             context.user_data.clear()
             return
 
-        messages_list = resources.get(year, {}).get(term, {}).get(section, {}).get(subject, {}).get(content_key, [])
+        messages_list = resources.get(year,
+                                      {}).get(term, {}).get(section, {}).get(
+                                          subject, {}).get(content_key, [])
 
         if not messages_list or messages_list == [0]:
             await update.message.reply_text(
