@@ -2,3 +2,5 @@ python-telegram-bot==20.3
 telegram
 nest-asyncio
 flask
+motor
+python-dotenv
