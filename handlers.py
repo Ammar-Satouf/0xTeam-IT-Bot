@@ -1,22 +1,9 @@
-import json
 import os
 from telegram import ReplyKeyboardMarkup, KeyboardButton, Update
 from telegram.ext import ContextTypes
 from resources import resources, channel_ids, temporary_culture_doc
 from datetime import datetime
-
-NOTIFIED_USERS_FILE = "notified_users.json"
-
-# تحميل وحفظ قائمة المستخدمين المفعّلين للإشعارات
-def load_notified_users():
-    if os.path.exists(NOTIFIED_USERS_FILE):
-        with open(NOTIFIED_USERS_FILE, "r") as f:
-            return json.load(f)
-    return []
-
-def save_notified_users(user_ids):
-    with open(NOTIFIED_USERS_FILE, "w") as f:
-        json.dump(user_ids, f)
+from notified_users import load_notified_users, save_notified_users
 
 # إضافة زر تفعيل الإشعارات للقائمة الرئيسية
 def main_menu_keyboard():
