@@ -51,8 +51,8 @@ resources = {
                     "notes": [39],
                 },
                 "🇸🇦 لغة عربية": {
-                    "gate": [0],
-                    "komit": [0],
+                    "gate": [41],
+                    "komit": [68],
                     "student_written": [0],
                     "summaries": [0],
                     "exams": [0],
