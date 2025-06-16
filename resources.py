@@ -31,8 +31,8 @@ resources = {
                     "komit": [0],
                     "student_written": [120, 121, 122, 123, 135],
                     "summaries": [0],
-                    "exams": [0],
-                    "notes": [0],
+                    "exams": [8],
+                    "notes": [41],
                 },
                 "➗ جبر لا خطي": {
                     "gate": [0],
@@ -44,10 +44,10 @@ resources = {
                 },
                 "🇬🇧 لغة انجليزية 1": {
                     "gate": [0],
-                    "komit": [0],
+                    "komit": [6],
                     "student_written": [0],
                     "summaries": [0],
-                    "exams": [0],
+                    "exams": [6],
                     "notes": [39],
                 },
                 "🇸🇦 لغة عربية": {
