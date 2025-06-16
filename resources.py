@@ -12,7 +12,7 @@ resources = {
                 },
                 "💻 برمجة 1": {
                     "gate": [0],
-                    "komit": [0],
+                    "komit": [61, 62, 63, 64, 65, 66],
                     "student_written": [94, 95, 96, 97, 98, 99],
                     "summaries": [0],
                     "exams": [0],
@@ -69,7 +69,7 @@ resources = {
                     "notes": [0],
                 },
                 "💻 برمجة 1": {
-                    "gate": [0],
+                    "gate": [33, 34, 35, 36, 37, 38, 39],
                     "komit": [0],
                     "student_written": [101, 102, 103, 104, 105],
                     "summaries": [0],
