@@ -331,36 +331,34 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         subjects_all_set = set()
 
     if strip_emoji(text) in subjects_all_set:
-    subj_clean = strip_emoji(text)
-    context.user_data["subject"] = subj_clean
-    context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
-        "اختر المادة:",
-        reply_markup=subjects_keyboard(sorted(subjects_all_set))
-    )
+        subj_clean = strip_emoji(text)
+        context.user_data["subject"] = subj_clean
+        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
+            "اختر المادة:",
+            reply_markup=subjects_keyboard(sorted(subjects_all_set)))
 
-    # 🛠 الحل هنا: نحذف البيانات القديمة للمادة إذا كانت موجودة
-    context.user_data.pop("section", None)  # حذف القسم السابق إذا وُجد
-    # context.user_data.pop("content_key", None)  # في حال كنت تخزن نوع المحتوى لاحقًا
+        # نتحقق الأقسام المتوفرة للمادة
+        available_sections = []
+        if subj_clean in resources.get(year,
+                                       {}).get(term,
+                                               {}).get("theoretical", {}):
+            available_sections.append("theoretical")
+        if subj_clean in resources.get(year, {}).get(term,
+                                                     {}).get("practical", {}):
+            available_sections.append("practical")
 
-    # نتحقق الأقسام المتوفرة للمادة
-    available_sections = []
-    if subj_clean in resources.get(year, {}).get(term, {}).get("theoretical", {}):
-        available_sections.append("theoretical")
-    if subj_clean in resources.get(year, {}).get(term, {}).get("practical", {}):
-        available_sections.append("practical")
-
-    if len(available_sections) == 1:
-        context.user_data["section"] = available_sections[0]
-        await update.message.reply_text(
-            "اختر نوع المحتوى المطلوب:",
-            reply_markup=content_type_keyboard(),
-        )
-    else:
-        await update.message.reply_text(
-            "اختر القسم (نظري أو عملي):",
-            reply_markup=section_keyboard(),
-        )
-    return
+        if len(available_sections) == 1:
+            context.user_data["section"] = available_sections[0]
+            await update.message.reply_text(
+                "اختر نوع المحتوى المطلوب:",
+                reply_markup=content_type_keyboard(),
+            )
+        else:
+            await update.message.reply_text(
+                "اختر القسم (نظري أو عملي):",
+                reply_markup=section_keyboard(),
+            )
+        return
 
     # اختيار القسم
     if text == "📘 القسم النظري":
