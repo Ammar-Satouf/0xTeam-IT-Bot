@@ -163,7 +163,7 @@ resources = {
                     "notes": [0],
                 },
                 "💻 برمجة 2": {
-                    "gate": [28],
+                    "gate": [28, 43, 44, 45, 46, 47],
                     "komit": [24, 25, 26, 27, 28],
                     "student_written": [0],
                     "summaries": [0],
