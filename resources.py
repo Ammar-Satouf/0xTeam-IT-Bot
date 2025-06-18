@@ -157,7 +157,7 @@ resources = {
                 "⚡ فيزياء انصاف نواقل": {
                     "gate": [0],
                     "komit": [45, 46, 47],
-                    "student_written": [51, 52, 53, 54, 55, 56],
+                    "student_written": [51, 52, 53, 54, 55, 56, 136],
                     "summaries": [0],
                     "exams": [0],
                     "notes": [0],
