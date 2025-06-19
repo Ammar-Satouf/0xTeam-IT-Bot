@@ -28,12 +28,16 @@ async def load_notified_users():
         return []
 
 
-async def add_notified_user(user_id: int):
-    """إضافة user_id جديد إذا غير موجود"""
+async def add_notified_user(user_id: int, first_name: str, last_name: str = ""):
+    """إضافة user_id مع الاسم إذا غير موجود"""
     try:
         exists = await notified_collection.find_one({"user_id": user_id})
         if not exists:
-            await notified_collection.insert_one({"user_id": user_id})
+            await notified_collection.insert_one({
+                "user_id": user_id,
+                "first_name": first_name,
+                "last_name": last_name
+            })
             print(f"User ID {user_id} added successfully.")
             return True
         print(f"User ID {user_id} already exists.")
