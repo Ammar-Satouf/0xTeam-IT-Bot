@@ -16,6 +16,7 @@ db = mongo_client[MONGO_DB_NAME]
 # الوصول إلى الكولكشن الخاص بالمستخدمين المفعّلين للإشعارات
 notified_collection = db["notified_users"]
 
+
 # دوال التعامل مع إشعارات التحديثات
 async def load_notified_users():
     """إرجاع قائمة user_id من قاعدة البيانات"""
@@ -29,19 +30,26 @@ async def load_notified_users():
         print(f"Database error in load_notified_users: {e}")
         return []
 
-async def add_notified_user(user_id: int):
-    """إضافة user_id جديد إذا غير موجود"""
+
+async def add_notified_user(user_id: int, first_name: str = "", last_name: str = ""):
+    """إضافة user_id جديد مع الاسم الأول والأخير إذا غير موجود"""
     try:
         exists = await notified_collection.find_one({"user_id": user_id})
         if not exists:
-            await notified_collection.insert_one({"user_id": user_id})
-            print(f"User ID {user_id} added successfully.")
+            user_data = {
+                "user_id": user_id,
+                "first_name": first_name,
+                "last_name": last_name
+            }
+            await notified_collection.insert_one(user_data)
+            print(f"User ID {user_id} ({first_name} {last_name}) added successfully.")
             return True
         print(f"User ID {user_id} already exists.")
         return False
     except Exception as e:
         print(f"Database error in add_notified_user: {e}")
         return False
+
 
 async def remove_notified_user(user_id: int):
     """حذف user_id من قاعدة البيانات"""
@@ -51,6 +59,7 @@ async def remove_notified_user(user_id: int):
     except Exception as e:
         print(f"Database error in remove_notified_user: {e}")
         return False
+
 
 async def is_user_notified(user_id: int):
     """فحص إذا كان المستخدم مفعل للإشعارات"""
