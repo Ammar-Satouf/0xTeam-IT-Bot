@@ -1,7 +1,7 @@
 import os
 from telegram import ReplyKeyboardMarkup, KeyboardButton, Update
 from telegram.ext import ContextTypes
-from resources import resources, channel_ids, temporary_culture_doc
+from resources import resources, channel_ids, temporary_culture_doc, practical_exam_schedule
 from datetime import datetime
 from db import load_notified_users, add_notified_user
 
@@ -14,6 +14,7 @@ def main_menu_keyboard():
             [KeyboardButton("📤 آلية تقديم اعتراض")],
             [KeyboardButton("👥 عن البوت والفريق")],
             [KeyboardButton("📗 مقرر الثقافة المؤقت")],
+            [KeyboardButton("📅 برنامج الامتحان العملي")],
             [KeyboardButton("🔔 تفعيل إشعارات التحديثات")],
         ],
         resize_keyboard=True,
@@ -387,6 +388,29 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                        protect_content=True)
         await update.message.reply_text(
             "🎯 تم إرسال مقرر الثقافة المؤقت بنجاح.\nلا تنسَ تشارك البوت مع زملائك ❤",
+            reply_markup=main_menu_keyboard(),
+        )
+        return
+
+    # برنامج الامتحان العملي
+    if text == "📅 برنامج الامتحان العملي":
+        context.user_data["previous_step"] = start
+        cid = channel_ids.get("exams1")  # قناة الامتحانات للسنة الأولى
+        msg_id = practical_exam_schedule
+
+        if not cid or not msg_id:
+            await update.message.reply_text(
+                "📅 لا يتوفر برنامج الامتحان العملي حالياً.",
+                reply_markup=main_menu_keyboard(),
+            )
+            return
+
+        await context.bot.copy_message(chat_id=update.effective_chat.id,
+                                       from_chat_id=cid,
+                                       message_id=msg_id,
+                                       protect_content=True)
+        await update.message.reply_text(
+            "📅 تم إرسال برنامج الامتحان العملي بنجاح.\nبالتوفيق في امتحاناتك! 💪",
             reply_markup=main_menu_keyboard(),
         )
         return
