@@ -575,7 +575,7 @@ resources = {
     "السنة الرابعة": {
         "specializations": {
             "هندسة البرمجيات": "p",
-            "الشبكات والنظم": "n", 
+            "الشبكات والنظم": "n",
             "الذكاء الاصطناعي": "i"
         },
         "الفصل الأول": {
@@ -1150,7 +1150,7 @@ resources = {
     "السنة الخامسة": {
         "specializations": {
             "هندسة البرمجيات": "p",
-            "الشبكات والنظم": "n", 
+            "الشبكات والنظم": "n",
             "الذكاء الاصطناعي": "i"
         },
         "الفصل الأول": {
@@ -1612,7 +1612,7 @@ channel_ids = {
     "summaries1": -1002890234972,
     "exams1": -1002449310532,
     "notes1": -1002834270732,
-    
+
     # السنة الثانية
     "gate2": 0,  # سيتم تحديثها لاحقاً
     "komit2": 0,
@@ -1620,7 +1620,7 @@ channel_ids = {
     "summaries2": 0,
     "exams2": 0,
     "notes2": 0,
-    
+
     # السنة الثالثة
     "gate3": 0,
     "komit3": 0,
@@ -1628,7 +1628,7 @@ channel_ids = {
     "summaries3": 0,
     "exams3": 0,
     "notes3": 0,
-    
+
     # السنة الرابعة - هندسة البرمجيات
     "gate4p": 0,
     "komit4p": 0,
@@ -1636,7 +1636,7 @@ channel_ids = {
     "summaries4p": 0,
     "exams4p": 0,
     "notes4p": 0,
-    
+
     # السنة الرابعة - الشبكات والنظم
     "gate4n": 0,
     "komit4n": 0,
@@ -1644,7 +1644,7 @@ channel_ids = {
     "summaries4n": 0,
     "exams4n": 0,
     "notes4n": 0,
-    
+
     # السنة الرابعة - الذكاء الاصطناعي
     "gate4i": 0,
     "komit4i": 0,
@@ -1652,7 +1652,7 @@ channel_ids = {
     "summaries4i": 0,
     "exams4i": 0,
     "notes4i": 0,
-    
+
     # السنة الخامسة - هندسة البرمجيات
     "gate5p": 0,
     "komit5p": 0,
@@ -1660,7 +1660,7 @@ channel_ids = {
     "summaries5p": 0,
     "exams5p": 0,
     "notes5p": 0,
-    
+
     # السنة الخامسة - الشبكات والنظم
     "gate5n": 0,
     "komit5n": 0,
@@ -1668,7 +1668,7 @@ channel_ids = {
     "summaries5n": 0,
     "exams5n": 0,
     "notes5n": 0,
-    
+
     # السنة الخامسة - الذكاء الاصطناعي
     "gate5i": 0,
     "komit5i": 0,
@@ -1679,3 +1679,4 @@ channel_ids = {
 }
 
 temporary_culture_doc = 51
+practical_exam_schedule = 10
