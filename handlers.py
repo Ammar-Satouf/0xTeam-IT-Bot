@@ -12,7 +12,7 @@ def main_menu_keyboard():
         [
             [KeyboardButton("📘 المواد الدراسية")],
             [KeyboardButton("📤 آلية تقديم اعتراض")],
-            [KeyboardButton("📌 عن البوت ومن وراه؟")],
+            [KeyboardButton("👥 عن البوت والفريق")],
             [KeyboardButton("📗 مقرر الثقافة المؤقت")],
             [KeyboardButton("🔔 تفعيل إشعارات التحديثات")],
         ],
@@ -29,6 +29,21 @@ def year_keyboard():
             [KeyboardButton("السنة الثالثة"),
              KeyboardButton("السنة الرابعة")],
             [KeyboardButton("السنة الخامسة")],
+            [KeyboardButton("🔙 رجوع"),
+             KeyboardButton("🏠 القائمة الرئيسية")],
+        ],
+        resize_keyboard=True,
+    )
+
+
+def specialization_keyboard():
+    return ReplyKeyboardMarkup(
+        [
+            [
+                KeyboardButton("هندسة البرمجيات"),
+                KeyboardButton("الشبكات والنظم")
+            ],
+            [KeyboardButton("الذكاء الاصطناعي")],
             [KeyboardButton("🔙 رجوع"),
              KeyboardButton("🏠 القائمة الرئيسية")],
         ],
@@ -116,7 +131,8 @@ async def notify_update_to_users(bot):
             try:
                 await bot.send_message(
                     chat_id=user_id,
-                    text="🔔 تم تحديث محتوى البوت بنجاح! يمكنك الآن استعراض المواد الجديدة."
+                    text=
+                    "🔔 تم تحديث محتوى البوت بنجاح! يمكنك الآن استعراض المواد الجديدة."
                 )
             except Exception as e:
                 print(f"Error notifying user {user_id}: {e}")
@@ -150,7 +166,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             is_already_notified = await is_user_notified(user_id)
 
             if not is_already_notified:
-                success = await add_notified_user(user_id)
+                # جلب معلومات المستخدم
+                first_name = update.effective_user.first_name or ""
+                last_name = update.effective_user.last_name or ""
+
+                success = await add_notified_user(user_id, first_name,
+                                                  last_name)
                 if success:
                     await update.message.reply_text(
                         "✅ تم تفعيل إشعارات التحديثات بنجاح. ستتلقى تنبيهات عند تحديث محتوى البوت.",
@@ -176,11 +197,131 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # رجوع أو القائمة الرئيسية
     if text == "🔙 رجوع":
-        previous_step = context.user_data.get("previous_step")
-        if previous_step:
-            await previous_step(update, context)
-        else:
-            await start(update, context)
+        # نحدد المرحلة الحالية بناء على البيانات المحفوظة
+        year = context.user_data.get("year")
+        specialization = context.user_data.get("specialization")
+        term = context.user_data.get("term")
+        subject = context.user_data.get("subject")
+        section = context.user_data.get("section")
+        current_step = context.user_data.get("current_step")
+
+        print(
+            f"Debug - Back button pressed. Data: year={year}, specialization={specialization}, term={term}, subject={subject}, section={section}, current_step={current_step}"
+        )
+
+        # إذا كان في مرحلة اختيار نوع المحتوى، يرجع للمرحلة السابقة
+        if current_step == "content_type":
+            # إذا كان القسم محدد، يرجع لاختيار القسم
+            if section:
+                context.user_data["current_step"] = "section"
+                await update.message.reply_text(
+                    "اختر القسم (نظري أو عملي):",
+                    reply_markup=section_keyboard())
+                return
+            # إذا لم يكن محتاج قسم، يرجع للمواد
+            else:
+                context.user_data["current_step"] = "subject"
+
+                # جلب المواد حسب السنة والتخصص
+                if year in ["السنة الرابعة", "السنة الخامسة"]:
+                    subjects_all = []
+                    for section_key in ["theoretical", "practical"]:
+                        subjects_all += list(
+                            resources.get(year, {}).get(term, {}).get(
+                                specialization, {}).get(section_key,
+                                                        {}).keys())
+                else:
+                    subjects_all = []
+                    for section_key in ["theoretical", "practical"]:
+                        subjects_all += list(
+                            resources.get(year,
+                                          {}).get(term,
+                                                  {}).get(section_key,
+                                                          {}).keys())
+
+                subjects_all_set = set(subjects_all)
+                prefix = "⚡ " if term == "الفصل الأول" else "🔥 "
+                subjects_with_emoji = [
+                    prefix + subj for subj in sorted(subjects_all_set)
+                ]
+
+                await update.message.reply_text(
+                    "اختر المادة:",
+                    reply_markup=subjects_keyboard(subjects_with_emoji))
+                return
+
+        # إذا كان في مرحلة اختيار القسم، يرجع لاختيار المادة
+        if current_step == "section":
+            context.user_data["current_step"] = "subject"
+            context.user_data.pop("section", None)
+
+            # جلب المواد حسب السنة والتخصص
+            if year in ["السنة الرابعة", "السنة الخامسة"]:
+                subjects_all = []
+                for section_key in ["theoretical", "practical"]:
+                    subjects_all += list(
+                        resources.get(year,
+                                      {}).get(term,
+                                              {}).get(specialization,
+                                                      {}).get(section_key,
+                                                              {}).keys())
+            else:
+                subjects_all = []
+                for section_key in ["theoretical", "practical"]:
+                    subjects_all += list(
+                        resources.get(year, {}).get(term,
+                                                    {}).get(section_key,
+                                                            {}).keys())
+
+            subjects_all_set = set(subjects_all)
+            prefix = "⚡ " if term == "الفصل الأول" else "🔥 "
+            subjects_with_emoji = [
+                prefix + subj for subj in sorted(subjects_all_set)
+            ]
+
+            await update.message.reply_text(
+                "اختر المادة:",
+                reply_markup=subjects_keyboard(subjects_with_emoji))
+            return
+
+        # إذا كان في مرحلة اختيار المادة، يرجع لاختيار الفصل
+        if current_step == "subject":
+            context.user_data["current_step"] = "term"
+            context.user_data.pop("subject", None)
+            context.user_data.pop("section", None)
+
+            await update.message.reply_text("اختر الفصل الدراسي:",
+                                            reply_markup=term_keyboard())
+            return
+
+        # إذا كان في مرحلة اختيار الفصل، يرجع لاختيار التخصص أو السنة
+        if current_step == "term":
+            context.user_data.pop("term", None)
+
+            # إذا كانت السنة الرابعة أو الخامسة، يرجع لاختيار التخصص
+            if year in ["السنة الرابعة", "السنة الخامسة"]:
+                context.user_data["current_step"] = "specialization"
+                await update.message.reply_text(
+                    "اختر التخصص:", reply_markup=specialization_keyboard())
+                return
+            else:
+                context.user_data["current_step"] = "year"
+                await update.message.reply_text("اختر السنة الدراسية:",
+                                                reply_markup=year_keyboard())
+                return
+
+        # إذا كان في مرحلة اختيار التخصص، يرجع لاختيار السنة
+        if current_step == "specialization":
+            context.user_data["current_step"] = "year"
+            context.user_data.pop("specialization", None)
+
+            await update.message.reply_text("اختر السنة الدراسية:",
+                                            reply_markup=year_keyboard())
+            return
+
+        # إذا كان في مرحلة اختيار السنة أو أي حالة أخرى، يرجع للقائمة الرئيسية
+        context.user_data.clear()
+        await start(update, context)
         return
 
     if text == "🏠 القائمة الرئيسية":
@@ -189,7 +330,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # المواد الدراسية - بداية اختيار السنة
     if text == "📘 المواد الدراسية":
-        context.user_data["previous_step"] = start
+        context.user_data.clear()
+        context.user_data["current_step"] = "year"
         await update.message.reply_text("اختر السنة الدراسية:",
                                         reply_markup=year_keyboard())
         return
@@ -211,30 +353,25 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-    # عن البوت ومن وراه؟
-# عن البوت ومن وراه؟
-    if text == "📌 عن البوت ومن وراه؟":
+    # عن البوت والفريق
+    if text == "👥 عن البوت والفريق":
         context.user_data["previous_step"] = start
         await update.message.reply_text(
-            "📌 عن البوت ومن وراه؟\n\n"
-            "أنا عمار سطوف [@ammarsa51]، مطوّر ومبرمج هذا البوت 🎯\n"
-            "صمّمته لحتى يساعد الطلاب يوصلوا للمحتوى الدراسي بسهولة وسرعة، وبشكل منظم وواضح.\n\n"
-            "🔧 بس البوت ما كان ليكون بهالشكل بدون الفريق الرائع يلي ساعدني:\n\n"
-            "👩‍💻 جودي حاضري [@JoudyHadry]\n"
-            "الداعمة الأساسية، اشتغلت على تجهيز المحتوى، تنظيم الملفات، ومتابعة التفاصيل. وجودها كان فرق حقيقي بكل خطوة تطوير.\n\n"
-            "👨‍💼 غدير ونوس [@ghadeer_wanous]\n"
-            "مساعد خفيف، ساعدني بأوقات مختلفة في ترتيب وتنظيم المحتوى، وكان دعمه إضافة لطيفة ضمن الفريق.\n\n"
-            "---\n\n"
-            "🚀 جزء من فريق 0x Team – فريق شبابي مهتم بالتطوير والتقنية، وهدفه تقديم حلول ذكية وعملية عبر تيليجرام وغيرها.\n"
-            "تابعونا على تيليجرام: @zeroxxteam",
+            "👥 <b>عن البوت والفريق</b>\n\n"
+            "تم تطوير هذا البوت لتقديم محتوى منظم وسهل الوصول لطلاب كلية الهندسة المعلوماتية، بهدف تسريع عملية الدراسة والمراجعة وتوفير الوقت والجهد.\n\n"
+            "🎯 هذا العمل هو نتاج رؤية برمجية متقدمة وخبرة أكاديمية، أعدّه <a href=\"https://t.me/ammarsa51\">عمار سطوف</a> – مطوّر ومهندس برمجيات مختص في بناء الأنظمة التعليمية والتقنية.\n"
+            "🤝 تم إنجاز هذا المشروع بدعم وتعاون بين فريق <b>0x Team</b> وفريق <b>SP_IT (Student Platform for Information Technology)</b>، حيث يطمح كلا الفريقين إلى تمكين المجتمع الطلابي من خلال أدوات تقنية وتعليمية متطورة ومخصصة.\n\n"
+            "🔹 Developed with passion and precision to support Informatics Engineering students on their academic journey.\n"
+            "© 2025 0x Team & SP_IT – جميع الحقوق محفوظة.\n"
+            "🔧 Designed & Developed by <a href=\"https://t.me/ammarsa51\">Ammar Satouf</a>",
             reply_markup=main_menu_keyboard(),
+            parse_mode="HTML"
         )
         return
-
     # مقرر الثقافة المؤقت
     if text == "📗 مقرر الثقافة المؤقت":
         context.user_data["previous_step"] = start
-        cid = channel_ids.get("komit")
+        cid = channel_ids.get("komit1")  # تحديث للسنة الأولى
         msg_id = temporary_culture_doc
 
         if not cid or not msg_id:
@@ -264,9 +401,30 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     }
 
     if text in years_map:
-        context.user_data["year"] = text
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
-            "اختر السنة الدراسية:", reply_markup=year_keyboard())
+        year = text
+        context.user_data["year"] = year
+
+        # إذا كانت السنة الرابعة أو الخامسة، نطلب اختيار التخصص
+        if year in ["السنة الرابعة", "السنة الخامسة"]:
+            context.user_data["current_step"] = "specialization"
+            await update.message.reply_text(
+                "اختر التخصص:", reply_markup=specialization_keyboard())
+        else:
+            context.user_data["current_step"] = "term"
+            await update.message.reply_text("اختر الفصل الدراسي:",
+                                            reply_markup=term_keyboard())
+        return
+
+    # اختيار التخصص (للسنة الرابعة والخامسة)
+    specializations_map = {
+        "هندسة البرمجيات": "هندسة البرمجيات",
+        "الشبكات والنظم": "الشبكات والنظم",
+        "الذكاء الاصطناعي": "الذكاء الاصطناعي",
+    }
+
+    if text in specializations_map:
+        context.user_data["specialization"] = text
+        context.user_data["current_step"] = "term"
         await update.message.reply_text("اختر الفصل الدراسي:",
                                         reply_markup=term_keyboard())
         return
@@ -278,21 +436,38 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     }
     if text in term_map:
         year = context.user_data.get("year")
+        specialization = context.user_data.get("specialization")
         term = term_map[text]
         context.user_data["term"] = term
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
-            "اختر الفصل الدراسي:", reply_markup=term_keyboard())
+        context.user_data["current_step"] = "subject"
 
-        if year not in resources or term not in resources[year]:
-            await update.message.reply_text("لا توجد مواد لهذا الفصل.",
-                                            reply_markup=main_menu_keyboard())
-            return
+        # التحقق من وجود المواد حسب السنة والتخصص
+        if year in ["السنة الرابعة", "السنة الخامسة"]:
+            if (year not in resources or term not in resources[year]
+                    or specialization not in resources[year][term]):
+                await update.message.reply_text(
+                    "لا توجد مواد لهذا التخصص والفصل.",
+                    reply_markup=term_keyboard())
+                return
 
-        # جلب المواد من النظري والعملي مع دمج وإزالة التكرار
-        theoretical_subjects = list(resources[year][term].get(
-            "theoretical", {}).keys())
-        practical_subjects = list(resources[year][term].get("practical",
-                                                            {}).keys())
+            # جلب المواد من النظري والعملي للتخصص المحدد
+            theoretical_subjects = list(
+                resources[year][term][specialization].get("theoretical",
+                                                          {}).keys())
+            practical_subjects = list(
+                resources[year][term][specialization].get("practical",
+                                                          {}).keys())
+        else:
+            if year not in resources or term not in resources[year]:
+                await update.message.reply_text("لا توجد مواد لهذا الفصل.",
+                                                reply_markup=term_keyboard())
+                return
+
+            # جلب المواد من النظري والعملي للسنوات العادية
+            theoretical_subjects = list(resources[year][term].get(
+                "theoretical", {}).keys())
+            practical_subjects = list(resources[year][term].get(
+                "practical", {}).keys())
 
         all_subjects_set = set(theoretical_subjects + practical_subjects)
         all_subjects = sorted(all_subjects_set)
@@ -302,7 +477,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if not subjects:
             await update.message.reply_text("لا توجد مواد لهذا الفصل.",
-                                            reply_markup=main_menu_keyboard())
+                                            reply_markup=term_keyboard())
             return
 
         await update.message.reply_text(
@@ -315,13 +490,24 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # جميع المواد في resources تحت السنة والفصل والقسمين
     year = context.user_data.get("year")
+    specialization = context.user_data.get("specialization")
     term = context.user_data.get("term")
+
     if year and term:
         subjects_all = []
-        for section_key in ["theoretical", "practical"]:
-            subjects_all += list(
-                resources.get(year, {}).get(term, {}).get(section_key,
+        if year in ["السنة الرابعة", "السنة الخامسة"] and specialization:
+            for section_key in ["theoretical", "practical"]:
+                subjects_all += list(
+                    resources.get(year,
+                                  {}).get(term,
+                                          {}).get(specialization,
+                                                  {}).get(section_key,
                                                           {}).keys())
+        else:
+            for section_key in ["theoretical", "practical"]:
+                subjects_all += list(
+                    resources.get(year, {}).get(term, {}).get(section_key,
+                                                              {}).keys())
         subjects_all_set = set(subjects_all)
     else:
         subjects_all_set = set()
@@ -329,27 +515,31 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if strip_emoji(text) in subjects_all_set:
         subj_clean = strip_emoji(text)
         context.user_data["subject"] = subj_clean
-        context.user_data["previous_step"] = lambda u, c: u.message.reply_text(
-            "اختر المادة:",
-            reply_markup=subjects_keyboard(sorted(subjects_all_set)))
 
         # نتحقق الأقسام المتوفرة للمادة
         available_sections = []
-        if subj_clean in resources.get(year,
-                                       {}).get(term,
-                                               {}).get("theoretical", {}):
+
+        if year in ["السنة الرابعة", "السنة الخامسة"]:
+            subject_data = resources.get(year,
+                                         {}).get(term,
+                                                 {}).get(specialization, {})
+        else:
+            subject_data = resources.get(year, {}).get(term, {})
+
+        if subj_clean in subject_data.get("theoretical", {}):
             available_sections.append("theoretical")
-        if subj_clean in resources.get(year, {}).get(term,
-                                                     {}).get("practical", {}):
+        if subj_clean in subject_data.get("practical", {}):
             available_sections.append("practical")
 
         if len(available_sections) == 1:
             context.user_data["section"] = available_sections[0]
+            context.user_data["current_step"] = "content_type"
             await update.message.reply_text(
                 "اختر نوع المحتوى المطلوب:",
                 reply_markup=content_type_keyboard(),
             )
         else:
+            context.user_data["current_step"] = "section"
             await update.message.reply_text(
                 "اختر القسم (نظري أو عملي):",
                 reply_markup=section_keyboard(),
@@ -359,6 +549,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # اختيار القسم
     if text == "📘 القسم النظري":
         context.user_data["section"] = "theoretical"
+        context.user_data["current_step"] = "content_type"
         await update.message.reply_text(
             "اختر نوع المحتوى المطلوب:",
             reply_markup=content_type_keyboard(),
@@ -367,6 +558,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if text == "🧪 القسم العملي":
         context.user_data["section"] = "practical"
+        context.user_data["current_step"] = "content_type"
         await update.message.reply_text(
             "اختر نوع المحتوى المطلوب:",
             reply_markup=content_type_keyboard(),
@@ -384,8 +576,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     }
 
     if text in content_type_map:
-        content_key = content_type_map[text]
+        content_key_base = content_type_map[text]
         year = context.user_data.get("year")
+        specialization = context.user_data.get("specialization")
         term = context.user_data.get("term")
         section = context.user_data.get("section")
         subject = context.user_data.get("subject")
@@ -398,14 +591,31 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             context.user_data.clear()
             return
 
-        messages_list = resources.get(year,
-                                      {}).get(term, {}).get(section, {}).get(
-                                          subject, {}).get(content_key, [])
+        # تحديد مفتاح المحتوى حسب السنة والتخصص
+        if year == "السنة الأولى":
+            content_key = content_key_base + "1"
+        elif year == "السنة الثانية":
+            content_key = content_key_base + "2"
+        elif year == "السنة الثالثة":
+            content_key = content_key_base + "3"
+        elif year in ["السنة الرابعة", "السنة الخامسة"]:
+            year_num = "4" if year == "السنة الرابعة" else "5"
+            spec_code = resources[year]["specializations"][specialization]
+            content_key = content_key_base + year_num + spec_code
+
+        # جلب البيانات حسب السنة والتخصص
+        if year in ["السنة الرابعة", "السنة الخامسة"]:
+            messages_list = resources.get(year, {}).get(term, {}).get(
+                specialization,
+                {}).get(section, {}).get(subject, {}).get(content_key, [])
+        else:
+            messages_list = resources.get(year, {}).get(term, {}).get(
+                section, {}).get(subject, {}).get(content_key, [])
 
         if not messages_list or messages_list == [0]:
             await update.message.reply_text(
                 "عذرًا، لا توجد ملفات متاحة لهذا المحتوى حالياً.",
-                reply_markup=main_menu_keyboard(),
+                reply_markup=content_type_keyboard(),
             )
             return
 
@@ -428,12 +638,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 print(f"Error sending message {msg_id} from {channel_id}: {e}")
 
+        # البقاء في نفس مرحلة اختيار نوع المحتوى
+        context.user_data["current_step"] = "content_type"
+
         await update.message.reply_text(
-            "✅ تم إرسال الملفات المطلوبة.\n"
-            "يمكنك اختيار مواد أخرى أو العودة للقائمة الرئيسية.",
-            reply_markup=main_menu_keyboard(),
+            "اختر نوع المحتوى المطلوب:",
+            reply_markup=content_type_keyboard(),
         )
-        context.user_data.clear()
         return
 
     # إذا لم يتعرف على النص
