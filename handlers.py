@@ -3,7 +3,7 @@ from telegram import ReplyKeyboardMarkup, KeyboardButton, Update
 from telegram.ext import ContextTypes
 from resources import resources, channel_ids, temporary_culture_doc
 from datetime import datetime
-from db import load_notified_users, add_notified_user
+from db import load_notified_users, add_notified_user, is_user_notified
 
 
 # إضافة زر تفعيل الإشعارات للقائمة الرئيسية
@@ -126,11 +126,15 @@ async def notify_update_to_users(bot):
 
 # 🚀 البداية
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_first_name = update.effective_user.first_name or "طالبنا"
+    user = update.effective_user
+    first_name = user.first_name or ""
+    last_name = user.last_name or ""
+    full_name = (first_name + " " + last_name).strip() or "طالبنا"
+
     greeting = get_greeting()
 
     await update.message.reply_text(
-        f"{greeting}، يسعد يومك يا {user_first_name} 💫\n"
+        f"{greeting}، يسعد يومك يا {full_name} 💫\n"
         "زيرو ✖ تيم معك دايمًا يا مبدع 🤍🚀\n"
         "اختر أحد الأقسام التالية:",
         reply_markup=main_menu_keyboard(),
