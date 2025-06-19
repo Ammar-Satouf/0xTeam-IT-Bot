@@ -50,4 +50,5 @@ def check_secrets():
     else:
         print("✅ MONGO_DB_NAME is set.")
 
+
 check_secrets()
