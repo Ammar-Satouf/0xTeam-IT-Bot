@@ -107,7 +107,7 @@ resources = {
                 "➗ جبر خطي": {
                     "gate": [0],
                     "komit": [5, 7, 8, 9, 10],
-                    "student_written": [43, 44, 45, 46, 47, 48, 49],
+                    "student_written": [72, 73, 74, 75, 76, 137],
                     "summaries": [72, 73, 74, 75, 76],
                     "exams": [0],
                     "notes": [0],
