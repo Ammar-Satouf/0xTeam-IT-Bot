@@ -1622,20 +1622,20 @@ channel_ids = {
     "notes2": 0,
 
     # السنة الثالثة
-    "gate3": 0,
-    "komit3": 0,
-    "student_written3": 0,
-    "summaries3": 0,
-    "exams3": 0,
-    "notes3": 0,
+    "gate3": -1002721306714,
+    "komit3": -1002626373818,
+    "student_written3": -1002827083356,
+    "summaries3": -1002716898285,
+    "exams3": -1002634922150,
+    "notes3": -1002832147740,
 
     # السنة الرابعة - هندسة البرمجيات
-    "gate4p": 0,
-    "komit4p": 0,
-    "student_written4p": 0,
-    "summaries4p": 0,
-    "exams4p": 0,
-    "notes4p": 0,
+    "gate4p": -1002869327000,
+    "komit4p": -1002878741842,
+    "student_written4p": -1002723903454,
+    "summaries4p": -1002822605673,
+    "exams4p": -1002744540625,
+    "notes4p": -1002744363447,
 
     # السنة الرابعة - الشبكات والنظم
     "gate4n": 0,
