@@ -512,7 +512,7 @@ resources = {
                     "notes3": [0],
                 },
                 "هندسة برمجيات 1": {
-                    "gate3": [0],
+                    "gate3": [12, 13, 14, 15, 16],
                     "komit3": [0],
                     "student_written3": [0],
                     "summaries3": [0],
@@ -562,7 +562,7 @@ resources = {
                     "notes3": [0],
                 },
                 "هندسة برمجيات 1": {
-                    "gate3": [0],
+                    "gate3": [18, 19],
                     "komit3": [0],
                     "student_written3": [0],
                     "summaries3": [0],
