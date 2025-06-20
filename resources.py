@@ -1105,7 +1105,7 @@ resources = {
                 "practical": {
                     "تعلم الآلة": {
                         "gate4i": [0],
-                        "komit4i": [13],
+                        "komit4i": [13, 14],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
