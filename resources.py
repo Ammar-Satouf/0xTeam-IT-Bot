@@ -1425,7 +1425,7 @@ resources = {
                         "notes5p": [0],
                     },
                     "هندسة برمجيات 3": {
-                        "gate5p": [0],
+                        "gate5p": [4, 5, 6, 7, 8, 9, 10, 11],
                         "komit5p": [0],
                         "student_written5p": [0],
                         "summaries5p": [0],
@@ -1459,7 +1459,7 @@ resources = {
                         "notes5p": [0],
                     },
                     "هندسة برمجيات 3": {
-                        "gate5p": [0],
+                        "gate5p": [13, 14, 15],
                         "komit5p": [0],
                         "student_written5p": [0],
                         "summaries5p": [0],
