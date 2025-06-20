@@ -1614,12 +1614,12 @@ channel_ids = {
     "notes1": -1002834270732,
 
     # السنة الثانية
-    "gate2": 0,  # سيتم تحديثها لاحقاً
-    "komit2": 0,
-    "student_written2": 0,
-    "summaries2": 0,
-    "exams2": 0,
-    "notes2": 0,
+    "gate2": -1002651836647,  # سيتم تحديثها لاحقاً
+    "komit2": -1002534769253,
+    "student_written2": -1002721628683,
+    "summaries2": -1002621858994,
+    "exams2": -1002852495855,
+    "notes2": -1002600270416,
 
     # السنة الثالثة
     "gate3": -1002721306714,
@@ -1654,28 +1654,28 @@ channel_ids = {
     "notes4i": -1002649600575,
 
     # السنة الخامسة - هندسة البرمجيات
-    "gate5p": 0,
-    "komit5p": 0,
-    "student_written5p": 0,
-    "summaries5p": 0,
-    "exams5p": 0,
-    "notes5p": 0,
+    "gate5p": -1002644530568,
+    "komit5p": -1002701442563,
+    "student_written5p": -10025001231172,
+    "summaries5p": -1002704130539,
+    "exams5p": -1002765971652,
+    "notes5p": -1002336787387,
 
     # السنة الخامسة - الشبكات والنظم
-    "gate5n": 0,
-    "komit5n": 0,
-    "student_written5n": 0,
-    "summaries5n": 0,
-    "exams5n": 0,
-    "notes5n": 0,
+    "gate5n": -1002577235956,
+    "komit5n": -1002730578201,
+    "student_written5n": -1002784372364,
+    "summaries5n": -1002653148173,
+    "exams5n": -1002696838873,
+    "notes5n": -1002755726721,
 
     # السنة الخامسة - الذكاء الاصطناعي
-    "gate5i": 0,
-    "komit5i": 0,
-    "student_written5i": 0,
-    "summaries5i": 0,
-    "exams5i": 0,
-    "notes5i": 0,
+    "gate5i": -1002653331410,
+    "komit5i": -1002671832126,
+    "student_written5i": -1002501807711,
+    "summaries5i": -1002809488273,
+    "exams5i": -1002397729113,
+    "notes5i": -1002709871937,
 }
 
 temporary_culture_doc = 51
