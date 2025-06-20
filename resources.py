@@ -13,14 +13,14 @@ resources = {
                 "💻 برمجة 1": {
                     "gate1": [0],
                     "komit1": [61, 62, 63, 64, 65, 66],
-                    "student_written1": [94, 95, 96, 97, 98, 99],
+                    "student_written1": [94, 95, 96, 97, 98, 99, 143],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
                 },
                 "📊 تحليل 1": {
                     "gate1": [0],
-                    "komit1": [0],
+                    "komit1": [74, 75, 76, 77 ,78, 79],
                     "student_written1": [131, 132],
                     "summaries1": [0],
                     "exams1": [0],
@@ -43,7 +43,7 @@ resources = {
                     "notes1": [0],
                 },
                 "🇬🇧 لغة انجليزية 1": {
-                    "gate1": [0],
+                    "gate1": [52],
                     "komit1": [6],
                     "student_written1": [0],
                     "summaries1": [0],
@@ -53,7 +53,7 @@ resources = {
                 "🇸🇦 لغة عربية": {
                     "gate1": [41],
                     "komit1": [68],
-                    "student_written1": [0],
+                    "student_written1": [142],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
@@ -63,7 +63,7 @@ resources = {
                 "⚡ فيزياء كهربائية": {
                     "gate1": [0],
                     "komit1": [0],
-                    "student_written1": [114, 115, 116, 117, 118],
+                    "student_written1": [114, 115, 116, 117, 118, 141],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
@@ -71,7 +71,7 @@ resources = {
                 "💻 برمجة 1": {
                     "gate1": [33, 34, 35, 36, 37, 38, 39],
                     "komit1": [0],
-                    "student_written1": [101, 102, 103, 104, 105],
+                    "student_written1": [101, 102, 103, 104, 105, 144],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
