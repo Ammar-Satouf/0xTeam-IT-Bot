@@ -915,7 +915,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [8, 9, 10],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -957,7 +957,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [5, 6, 7],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -1001,7 +1001,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4n": [0],
-                        "komit4n": [0],
+                        "komit4n": [8, 9, 10],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1043,7 +1043,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4n": [0],
-                        "komit4n": [0],
+                        "komit4n": [5, 6, 7],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
