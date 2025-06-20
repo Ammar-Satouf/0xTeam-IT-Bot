@@ -1638,20 +1638,20 @@ channel_ids = {
     "notes4p": -1002744363447,
 
     # السنة الرابعة - الشبكات والنظم
-    "gate4n": 0,
-    "komit4n": 0,
-    "student_written4n": 0,
-    "summaries4n": 0,
-    "exams4n": 0,
-    "notes4n": 0,
+    "gate4n": -1002803525724,
+    "komit4n": -1002806368893,
+    "student_written4n": -1002833015956,
+    "summaries4n": -1002607963545,
+    "exams4n": -1002792554456,
+    "notes4n": -1002882181611,
 
     # السنة الرابعة - الذكاء الاصطناعي
-    "gate4i": 0,
-    "komit4i": 0,
-    "student_written4i": 0,
-    "summaries4i": 0,
-    "exams4i": 0,
-    "notes4i": 0,
+    "gate4i": -1002759333456,
+    "komit4i": -1002705201493,
+    "student_written4i": -1002387577544,
+    "summaries4i": -1002677276057,
+    "exams4i": -1002866468744,
+    "notes4i": -1002649600575,
 
     # السنة الخامسة - هندسة البرمجيات
     "gate5p": 0,
