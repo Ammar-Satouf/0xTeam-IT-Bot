@@ -139,7 +139,7 @@ resources = {
                 "🇬🇧 لغة انجليزية 2": {
                     "gate1": [0],
                     "komit1": [49],
-                    "student_written1": [0],
+                    "student_written1": [145],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
@@ -922,7 +922,7 @@ resources = {
                         "notes4p": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4p": [0],
+                        "gate4p": [4, 5, 6, 7],
                         "komit4p": [0],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -964,7 +964,7 @@ resources = {
                         "notes4p": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4p": [0],
+                        "gate4p": [8, 9, 10],
                         "komit4p": [0],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -1008,7 +1008,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4n": [0],
+                        "gate4n": [5, 6, 7, 8],
                         "komit4n": [0],
                         "student_written4n": [0],
                         "summaries4n": [0],
@@ -1050,7 +1050,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4n": [0],
+                        "gate4n": [9, 10, 11],
                         "komit4n": [0],
                         "student_written4n": [0],
                         "summaries4n": [0],
@@ -1094,7 +1094,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4i": [0],
+                        "gate4i": [4, 5, 6, 7],
                         "komit4i": [0],
                         "student_written4i": [0],
                         "summaries4i": [0],
@@ -1105,7 +1105,7 @@ resources = {
                 "practical": {
                     "تعلم الآلة": {
                         "gate4i": [0],
-                        "komit4i": [13, 14],
+                        "komit4i": [13, 14, 15, 16],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1136,7 +1136,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "النظم الموزعة": {
-                        "gate4i": [0],
+                        "gate4i": [8, 9, 10],
                         "komit4i": [0],
                         "student_written4i": [0],
                         "summaries4i": [0],
