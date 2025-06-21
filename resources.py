@@ -891,7 +891,7 @@ resources = {
                 "theoretical": {
                     "نمذجة ومحاكاة": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [26],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -907,7 +907,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [12, 13, 14, 15],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -923,7 +923,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4p": [4, 5, 6, 7],
-                        "komit4p": [0],
+                        "komit4p": [21, 22],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -933,7 +933,7 @@ resources = {
                 "practical": {
                     "نمذجة ومحاكاة": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [27],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -949,7 +949,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4p": [0],
-                        "komit4p": [0],
+                        "komit4p": [16, 17, 18],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -965,7 +965,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4p": [8, 9, 10],
-                        "komit4p": [0],
+                        "komit4p": [23],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -1009,7 +1009,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4n": [5, 6, 7, 8],
-                        "komit4n": [0],
+                        "komit4n": [12, 13],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1026,7 +1026,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "بروتوكولات شبكية": {
-                        "gate4n": [0],
+                        "gate4n": [18, 19, 20, 21, 22, 23],
                         "komit4n": [0],
                         "student_written4n": [0],
                         "summaries4n": [0],
@@ -1034,7 +1034,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "بنيان 2": {
-                        "gate4n": [0],
+                        "gate4n": [13, 14, 15, 16],
                         "komit4n": [0],
                         "student_written4n": [0],
                         "summaries4n": [0],
@@ -1051,7 +1051,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4n": [9, 10, 11],
-                        "komit4n": [0],
+                        "komit4n": [14],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1087,7 +1087,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4i": [0],
-                        "komit4i": [0],
+                        "komit4i": [18, 19, 20, 21],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1095,7 +1095,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4i": [4, 5, 6, 7],
-                        "komit4i": [0],
+                        "komit4i": [27, 28],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1129,7 +1129,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4i": [0],
-                        "komit4i": [0],
+                        "komit4i": [22, 23, 24],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1137,7 +1137,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4i": [8, 9, 10],
-                        "komit4i": [0],
+                        "komit4i": [29],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
