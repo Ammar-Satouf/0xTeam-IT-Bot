@@ -187,7 +187,7 @@ resources = {
                 "برمجة متقدمة 1": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [4, 5, 6, 7, 8, 9, 10, 11],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -219,7 +219,7 @@ resources = {
                 "تحليل 3": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [18, 19, 20, 21, 22, 23, 24],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -232,7 +232,7 @@ resources = {
                 "برمجة متقدمة 1": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [12, 13, 14, 15, 16, 17],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -264,7 +264,7 @@ resources = {
                 "تحليل 3": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [18, 19, 20, 21, 22, 23, 24],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -284,7 +284,7 @@ resources = {
                 "داتا 1": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [25, 26, 27, 28, 29, 30, 31],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -292,7 +292,7 @@ resources = {
                 "اشارات ونظم": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [50, 51, 52, 53, 54, 55, 56, 57],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -300,7 +300,7 @@ resources = {
                 "بحوث عمليات": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [37, 39, 40, 41, 42, 43, 44],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -316,7 +316,7 @@ resources = {
                 "انكليزي معلوماتية 2": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [65, 66],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -334,15 +334,15 @@ resources = {
                 "داتا 1": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [32, 33, 34, 35, 36],
                     "summaries2": [0],
                     "exams2": [0],
-                    "notes2": [0],
+                    "notes2": [4, 5],
                 },
                 "اشارات ونظم": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [58, 59, 60, 61, 62, 63, 64],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
@@ -350,7 +350,7 @@ resources = {
                 "بحوث عمليات": {
                     "gate2": [0],
                     "komit2": [0],
-                    "student_written2": [0],
+                    "student_written2": [45, 46, 47, 48, 49],
                     "summaries2": [0],
                     "exams2": [0],
                     "notes2": [0],
