@@ -1679,4 +1679,4 @@ channel_ids = {
 }
 
 temporary_culture_doc = 51
-practical_exam_schedule = 10
+practical_exam_schedule = 12
