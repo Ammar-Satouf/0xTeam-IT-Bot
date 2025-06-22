@@ -9,9 +9,16 @@ TOKEN = os.getenv("TOKEN")
 async def main():
     application = ApplicationBuilder().token(TOKEN).build()
 
+    # إضافة أوامر البوت
     application.add_handler(CommandHandler("start", start))
     application.add_handler(
         MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
+
+    # تعيين قائمة الأوامر المتاحة
+    commands = [
+        ("start", "🚀 بدء استخدام البوت والعودة للقائمة الرئيسية")
+    ]
+    await application.bot.set_my_commands(commands)
 
     print("Bot started...")
     await application.run_polling()
