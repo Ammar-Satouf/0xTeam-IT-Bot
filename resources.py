@@ -490,7 +490,7 @@ resources = {
                 "شبكات 1": {
                     "gate3": [0],
                     "komit3": [0],
-                    "student_written3": [0],
+                    "student_written3": [93, 94, 95],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
@@ -514,7 +514,7 @@ resources = {
                 "هندسة برمجيات 1": {
                     "gate3": [12, 13, 14, 15, 16],
                     "komit3": [0],
-                    "student_written3": [0],
+                    "student_written3": [49, 51, 53, 56, 58, 60, 65],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
@@ -540,18 +540,18 @@ resources = {
                 "شبكات 1": {
                     "gate3": [0],
                     "komit3": [0],
-                    "student_written3": [0],
+                    "student_written3": [67, 69, 71, 73, 75, 77, 79],
                     "summaries3": [0],
                     "exams3": [0],
-                    "notes3": [0],
+                    "notes3": [15, 16],
                 },
                 "بنيان 1": {
                     "gate3": [21, 23, 25, 27, 29],
                     "komit3": [5],
-                    "student_written3": [0],
+                    "student_written3": [31, 32, 33, 35, 37, 39, 41, 43, 45, 46],
                     "summaries3": [0],
                     "exams3": [0],
-                    "notes3": [0],
+                    "notes3": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
                 },
                 "مبادئ ذكاء صنعي": {
                     "gate3": [0],
@@ -564,7 +564,7 @@ resources = {
                 "هندسة برمجيات 1": {
                     "gate3": [18, 19],
                     "komit3": [0],
-                    "student_written3": [0],
+                    "student_written3": [83, 85, 86, 87, 88, 89, 90, 91],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
