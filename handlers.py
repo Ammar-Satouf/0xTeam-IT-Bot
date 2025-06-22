@@ -237,9 +237,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         subject = context.user_data.get("subject")
         section = context.user_data.get("section")
         current_step = context.user_data.get("current_step")
+        in_branches = context.user_data.get("in_branches")
+        in_informatics = context.user_data.get("in_informatics")
 
         print(
-            f"Debug - Back button pressed. Data: year={year}, specialization={specialization}, term={term}, subject={subject}, section={section}, current_step={current_step}"
+            f"Debug - Back button pressed. Data: year={year}, specialization={specialization}, term={term}, subject={subject}, section={section}, current_step={current_step}, in_branches={in_branches}, in_informatics={in_informatics}"
         )
 
         # إذا كان في مرحلة اختيار نوع المحتوى، يرجع للمرحلة السابقة
@@ -352,18 +354,35 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                             reply_markup=year_keyboard())
             return
 
-        # إذا كان في مرحلة اختيار السنة أو أي حالة أخرى، يرجع للقائمة الرئيسية
+        # إذا كان في مرحلة اختيار السنة، يرجع لقائمة الهندسة المعلوماتية
+        if current_step == "year":
+            context.user_data.clear()
+            context.user_data["in_informatics"] = True
+            await update.message.reply_text(
+                "🎓 الهندسة المعلوماتية\n\nاختر ما تريد:",
+                reply_markup=informatics_menu_keyboard()
+            )
+            return
+
+        # إذا كان في قائمة الهندسة المعلوماتية، يرجع للأفرع الجامعية
+        if in_informatics:
+            context.user_data.clear()
+            context.user_data["in_branches"] = True
+            await update.message.reply_text(
+                "اختر الفرع الجامعي:",
+                reply_markup=university_branches_keyboard()
+            )
+            return
+
+        # إذا كان في قائمة الأفرع الجامعية، يرجع للقائمة الرئيسية
+        if in_branches:
+            context.user_data.clear()
+            await start(update, context)
+            return
+
+        # إذا لم يكن في أي مرحلة محددة، يرجع للقائمة الرئيسية
         context.user_data.clear()
         await start(update, context)
-        return
-
-    # تحديث معالج الرجوع للأفرع الجامعية
-    if context.user_data.get("from_informatics"):
-        context.user_data.pop("from_informatics", None)
-        await update.message.reply_text(
-            "اختر الفرع الجامعي:",
-            reply_markup=university_branches_keyboard()
-        )
         return
 
     if text == "🏠 القائمة الرئيسية":
@@ -373,6 +392,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # الأفرع الجامعية
     if text == "🏛️ الأفرع الجامعية":
         context.user_data.clear()
+        context.user_data["in_branches"] = True
         await update.message.reply_text(
             "اختر الفرع الجامعي:",
             reply_markup=university_branches_keyboard()
@@ -381,6 +401,8 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # الهندسة المعلوماتية
     if text == "💻 الهندسة المعلوماتية":
+        context.user_data["in_informatics"] = True
+        context.user_data.pop("in_branches", None)
         await update.message.reply_text(
             "🎓 الهندسة المعلوماتية\n\nاختر ما تريد:",
             reply_markup=informatics_menu_keyboard()
@@ -398,7 +420,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # المواد الدراسية - بداية اختيار السنة
     if text == "📘 المواد الدراسية":
+        # نحتفظ بحالة كوننا في الهندسة المعلوماتية
+        in_informatics = context.user_data.get("in_informatics")
         context.user_data.clear()
+        if in_informatics:
+            context.user_data["in_informatics"] = True
         context.user_data["current_step"] = "year"
         await update.message.reply_text("اختر السنة الدراسية:",
                                         reply_markup=year_keyboard())
