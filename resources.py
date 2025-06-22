@@ -148,7 +148,7 @@ resources = {
             "practical": {
                 "➗ جبر خطي": {
                     "gate1": [30, 31],
-                    "komit1": [12, 13, 14, 15],
+                    "komit1": [12, 13, 14, 15, 80],
                     "student_written1": [0],
                     "summaries1": [0],
                     "exams1": [0],
