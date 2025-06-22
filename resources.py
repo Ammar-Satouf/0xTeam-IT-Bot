@@ -472,7 +472,7 @@ resources = {
         "الفصل الثاني": {
             "theoretical": {
                 "نظرية التعقيد": {
-                    "gate3": [0],
+                    "gate3": [37, 38, 39, 40, 41, 42, 43],
                     "komit3": [0],
                     "student_written3": [0],
                     "summaries3": [0],
@@ -562,7 +562,7 @@ resources = {
                     "notes3": [0],
                 },
                 "هندسة برمجيات 1": {
-                    "gate3": [18, 19],
+                    "gate3": [33, 34, 35, 18, 19],
                     "komit3": [0],
                     "student_written3": [83, 85, 86, 87, 88, 89, 90, 91],
                     "summaries3": [0],
@@ -932,7 +932,7 @@ resources = {
                 },
                 "practical": {
                     "نمذجة ومحاكاة": {
-                        "gate4p": [12, 13],
+                        "gate4p": [12, 13, 14, 15, 16],
                         "komit4p": [27],
                         "student_written4p": [0],
                         "summaries4p": [0],
