@@ -932,7 +932,7 @@ resources = {
                 },
                 "practical": {
                     "نمذجة ومحاكاة": {
-                        "gate4p": [0],
+                        "gate4p": [12, 13],
                         "komit4p": [27],
                         "student_written4p": [0],
                         "summaries4p": [0],
