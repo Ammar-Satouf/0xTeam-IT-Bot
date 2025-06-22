@@ -498,7 +498,7 @@ resources = {
                 "بنيان 1": {
                     "gate3": [0],
                     "komit3": [0],
-                    "student_written3": [0],
+                    "student_written3": [9, 12, 14, 16],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
@@ -546,8 +546,8 @@ resources = {
                     "notes3": [0],
                 },
                 "بنيان 1": {
-                    "gate3": [0],
-                    "komit3": [0],
+                    "gate3": [21, 23, 25, 27, 29],
+                    "komit3": [5],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
