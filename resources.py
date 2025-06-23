@@ -906,7 +906,7 @@ resources = {
                         "notes4p": [4],
                     },
                     "بناء مترجمات": {
-                        "gate4p": [0],
+                        "gate4p": [20, 21],
                         "komit4p": [12, 13, 14, 15],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -948,7 +948,7 @@ resources = {
                         "notes4p": [4],
                     },
                     "بناء مترجمات": {
-                        "gate4p": [18, 19],
+                        "gate4p": [0],
                         "komit4p": [16, 17, 18],
                         "student_written4p": [0],
                         "summaries4p": [0],
