@@ -900,10 +900,10 @@ resources = {
                     "تحليل نظم مالية": {
                         "gate4p": [0],
                         "komit4p": [0],
-                        "student_written4p": [0],
+                        "student_written4p": [5, 6, 7, 8, 9],
                         "summaries4p": [0],
                         "exams4p": [0],
-                        "notes4p": [0],
+                        "notes4p": [4],
                     },
                     "بناء مترجمات": {
                         "gate4p": [0],
@@ -932,7 +932,7 @@ resources = {
                 },
                 "practical": {
                     "نمذجة ومحاكاة": {
-                        "gate4p": [12, 13, 14, 15, 16],
+                        "gate4p": [12, 13, 14, 15, 16, 17],
                         "komit4p": [27],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -942,13 +942,13 @@ resources = {
                     "تحليل نظم مالية": {
                         "gate4p": [0],
                         "komit4p": [0],
-                        "student_written4p": [0],
+                        "student_written4p": [11, 12, 16, 17],
                         "summaries4p": [0],
                         "exams4p": [0],
-                        "notes4p": [0],
+                        "notes4p": [4],
                     },
                     "بناء مترجمات": {
-                        "gate4p": [0],
+                        "gate4p": [18, 19],
                         "komit4p": [16, 17, 18],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -1128,7 +1128,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "بناء مترجمات": {
-                        "gate4i": [0],
+                        "gate4i": [12, 13],
                         "komit4i": [22, 23, 24],
                         "student_written4i": [0],
                         "summaries4i": [0],
