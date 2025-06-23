@@ -267,7 +267,7 @@ resources = {
                     "student_written2": [18, 19, 20, 21, 22, 23, 24],
                     "summaries2": [0],
                     "exams2": [0],
-                    "notes2": [0],
+                    "notes2": [6],
                 },
             },
         },
