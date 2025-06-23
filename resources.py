@@ -490,7 +490,7 @@ resources = {
                 "شبكات 1": {
                     "gate3": [0],
                     "komit3": [0],
-                    "student_written3": [93, 94, 95],
+                    "student_written3": [93, 94, 95, 96],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
@@ -933,7 +933,7 @@ resources = {
                 "practical": {
                     "نمذجة ومحاكاة": {
                         "gate4p": [12, 13, 14, 15, 16, 17],
-                        "komit4p": [27],
+                        "komit4p": [27, 29, 30, 31],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -957,7 +957,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4p": [0],
-                        "komit4p": [5, 6, 7],
+                        "komit4p": [5, 6, 7, 33, 34],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -1043,7 +1043,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4n": [0],
-                        "komit4n": [5, 6, 7],
+                        "komit4n": [5, 6, 7, 16, 17],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1086,7 +1086,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "بناء مترجمات": {
-                        "gate4i": [0],
+                        "gate4i": [14, 15],
                         "komit4i": [18, 19, 20, 21],
                         "student_written4i": [0],
                         "summaries4i": [0],
@@ -1128,7 +1128,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "بناء مترجمات": {
-                        "gate4i": [12, 13],
+                        "gate4i": [0],
                         "komit4i": [22, 23, 24],
                         "student_written4i": [0],
                         "summaries4i": [0],
