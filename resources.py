@@ -274,7 +274,7 @@ resources = {
         "الفصل الثاني": {
             "theoretical": {
                 "برمجة متقدمة 2": {
-                    "gate2": [0],
+                    "gate2": [6, 7, 8, 9, 10, 11, 12, 13],
                     "komit2": [0],
                     "student_written2": [0],
                     "summaries2": [0],
@@ -324,7 +324,7 @@ resources = {
             },
             "practical": {
                 "برمجة متقدمة 2": {
-                    "gate2": [0],
+                    "gate2": [15, 16, 20, 17, 18, 19],
                     "komit2": [0],
                     "student_written2": [0],
                     "summaries2": [0],
@@ -473,15 +473,15 @@ resources = {
             "theoretical": {
                 "نظرية التعقيد": {
                     "gate3": [37, 38, 39, 40, 41, 42, 43],
-                    "komit3": [0],
+                    "komit3": [23, 24, 25, 26],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
                 },
                 "نظرية المعلومات": {
-                    "gate3": [0],
-                    "komit3": [0],
+                    "gate3": [57, 58, 59],
+                    "komit3": [28, 31, 29, 30],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -513,7 +513,7 @@ resources = {
                 },
                 "هندسة برمجيات 1": {
                     "gate3": [12, 13, 14, 15, 16],
-                    "komit3": [0],
+                    "komit3": [10, 11, 12, 13, 14, 15, 16],
                     "student_written3": [49, 51, 53, 56, 58, 60, 65],
                     "summaries3": [0],
                     "exams3": [0],
@@ -530,8 +530,8 @@ resources = {
                     "notes3": [0],
                 },
                 "نظرية المعلومات": {
-                    "gate3": [0],
-                    "komit3": [0],
+                    "gate3": [61],
+                    "komit3": [33, 34, 35],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -546,7 +546,7 @@ resources = {
                     "notes3": [15, 16],
                 },
                 "بنيان 1": {
-                    "gate3": [21, 23, 25, 27, 29],
+                    "gate3": [21, 23, 25, 27, 29, 55],
                     "komit3": [5, 7, 8],
                     "student_written3": [31, 32, 33, 35, 37, 39, 41, 43, 45, 46],
                     "summaries3": [0],
@@ -563,7 +563,7 @@ resources = {
                 },
                 "هندسة برمجيات 1": {
                     "gate3": [33, 34, 35, 18, 19, 46],
-                    "komit3": [0],
+                    "komit3": [18, 20, 21],
                     "student_written3": [83, 85, 86, 87, 88, 89, 90, 91],
                     "summaries3": [0],
                     "exams3": [0],
@@ -1019,7 +1019,7 @@ resources = {
                 "practical": {
                     "نمذجة ومحاكاة": {
                         "gate4n": [0],
-                        "komit4n": [0],
+                        "komit4n": [18, 19, 20, 21],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1121,7 +1121,7 @@ resources = {
                     },
                     "نظم قواعد معرفة": {
                         "gate4i": [0],
-                        "komit4i": [0],
+                        "komit4i": [32, 33, 34, 35, 36],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
