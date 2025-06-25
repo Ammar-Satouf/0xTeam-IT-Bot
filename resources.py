@@ -324,7 +324,7 @@ resources = {
             },
             "practical": {
                 "برمجة متقدمة 2": {
-                    "gate2": [15, 16, 20, 17, 18, 19],
+                    "gate2": [15, 16, 20, 17, 18, 21, 19],
                     "komit2": [0],
                     "student_written2": [0],
                     "summaries2": [0],
