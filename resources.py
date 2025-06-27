@@ -542,7 +542,7 @@ resources = {
                     "komit3": [39, 40, 41],
                     "student_written3": [67, 69, 71, 73, 75, 77, 79],
                     "summaries3": [0],
-                    "exams3": [8],
+                    "exams3": [8, 11, 12, 13, 14, 15, 16],
                     "notes3": [15, 16, 19, 20],
                 },
                 "بنيان 1": {
@@ -1034,7 +1034,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "بنيان 2": {
-                        "gate4n": [13, 14, 15, 16],
+                        "gate4n": [13, 14, 15, 16, 29],
                         "komit4n": [0],
                         "student_written4n": [0],
                         "summaries4n": [0],
