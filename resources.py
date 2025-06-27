@@ -114,7 +114,7 @@ resources = {
                 },
                 "⚡ فيزياء انصاف نواقل": {
                     "gate1": [0],
-                    "komit1": [45, 46, 47, 90, 102],
+                    "komit1": [45, 46, 47, 90, 102, 103, 104],
                     "student_written1": [0],
                     "summaries1": [11, 12, 15],
                     "exams1": [0],
@@ -156,9 +156,9 @@ resources = {
                 },
                 "⚡ فيزياء انصاف نواقل": {
                     "gate1": [0],
-                    "komit1": [45, 46, 47, 90, 102],
+                    "komit1": [45, 46, 47, 90, 102, 103, 104],
                     "student_written1": [51, 52, 53, 54, 55, 56, 136],
-                    "summaries1": [0],
+                    "summaries1": [16, 17],
                     "exams1": [0],
                     "notes1": [0],
                 },
@@ -543,7 +543,7 @@ resources = {
                     "student_written3": [67, 69, 71, 73, 75, 77, 79],
                     "summaries3": [0],
                     "exams3": [8],
-                    "notes3": [15, 16],
+                    "notes3": [15, 16, 19, 20],
                 },
                 "بنيان 1": {
                     "gate3": [21, 23, 25, 27, 29, 55],
@@ -891,7 +891,7 @@ resources = {
                 "theoretical": {
                     "نمذجة ومحاكاة": {
                         "gate4p": [0],
-                        "komit4p": [26],
+                        "komit4p": [26, 45, 46, 47],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -906,7 +906,7 @@ resources = {
                         "notes4p": [4],
                     },
                     "بناء مترجمات": {
-                        "gate4p": [20, 21, 22],
+                        "gate4p": [20, 21, 22, 23],
                         "komit4p": [12, 13, 14, 15],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -915,7 +915,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4p": [0],
-                        "komit4p": [8, 9, 10, 35],
+                        "komit4p": [8, 9, 10, 35, 37, 39],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -923,7 +923,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4p": [4, 5, 6, 7],
-                        "komit4p": [21, 22],
+                        "komit4p": [21, 22, 40],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -942,21 +942,21 @@ resources = {
                     "تحليل نظم مالية": {
                         "gate4p": [0],
                         "komit4p": [0],
-                        "student_written4p": [11, 12, 16, 17],
+                        "student_written4p": [11, 12, 16, 17, 18],
                         "summaries4p": [0],
                         "exams4p": [0],
                         "notes4p": [4],
                     },
                     "بناء مترجمات": {
                         "gate4p": [0],
-                        "komit4p": [16, 17, 18],
+                        "komit4p": [16, 17, 18, 44],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
                         "notes4p": [0],
                     },
                     "تصميم تجارب": {
-                        "gate4p": [0],
+                        "gate4p": [24, 25, 26, 27],
                         "komit4p": [5, 6, 7, 33, 34, 36],
                         "student_written4p": [0],
                         "summaries4p": [0],
@@ -1001,7 +1001,7 @@ resources = {
                     },
                     "تصميم تجارب": {
                         "gate4n": [0],
-                        "komit4n": [8, 9, 10, 22],
+                        "komit4n": [8, 9, 10, 22, 24, 25],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1009,7 +1009,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4n": [5, 6, 7, 8],
-                        "komit4n": [12, 13],
+                        "komit4n": [12, 13, 26],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1042,7 +1042,7 @@ resources = {
                         "notes4n": [0],
                     },
                     "تصميم تجارب": {
-                        "gate4n": [0],
+                        "gate4n": [25, 26, 27, 28],
                         "komit4n": [5, 6, 7, 16, 17, 23],
                         "student_written4n": [0],
                         "summaries4n": [0],
@@ -1086,7 +1086,7 @@ resources = {
                         "notes4i": [0],
                     },
                     "بناء مترجمات": {
-                        "gate4i": [14, 15, 16],
+                        "gate4i": [14, 15, 16, 17],
                         "komit4i": [18, 19, 20, 21],
                         "student_written4i": [0],
                         "summaries4i": [0],
@@ -1095,7 +1095,7 @@ resources = {
                     },
                     "النظم الموزعة": {
                         "gate4i": [4, 5, 6, 7],
-                        "komit4i": [27, 28],
+                        "komit4i": [27, 28, 37],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1129,7 +1129,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4i": [0],
-                        "komit4i": [22, 23, 24],
+                        "komit4i": [22, 23, 24, 38],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
