@@ -472,8 +472,8 @@ resources = {
         "الفصل الثاني": {
             "theoretical": {
                 "نظرية التعقيد": {
-                    "gate3": [37, 38, 39, 40, 41, 42, 43],
-                    "komit3": [23, 24, 25, 26],
+                    "gate3": [37, 38, 39, 40, 41, 42, 43, 88, 92, 91],
+                    "komit3": [23, 24, 25, 26, 55, 56, 57, 58],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -514,7 +514,7 @@ resources = {
                 "هندسة برمجيات 1": {
                     "gate3": [12, 13, 14, 15, 16],
                     "komit3": [10, 11, 12, 13, 14, 15, 16],
-                    "student_written3": [49, 51, 53, 56, 58, 60, 65],
+                    "student_written3": [49, 51, 53, 56, 58, 60, 65, 130],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [0],
@@ -534,7 +534,7 @@ resources = {
                     "komit3": [33, 34, 35],
                     "student_written3": [124, 125, 126, 127, 128],
                     "summaries3": [0],
-                    "exams3": [0],
+                    "exams3": [17, 18, 19],
                     "notes3": [0],
                 },
                 "شبكات 1": {
@@ -547,7 +547,7 @@ resources = {
                 },
                 "بنيان 1": {
                     "gate3": [21, 23, 25, 27, 29, 55],
-                    "komit3": [5, 7, 8],
+                    "komit3": [5, 7, 8, 60],
                     "student_written3": [31, 32, 33, 35, 37, 39, 41, 43, 45, 46],
                     "summaries3": [0],
                     "exams3": [0],
@@ -563,7 +563,7 @@ resources = {
                 },
                 "هندسة برمجيات 1": {
                     "gate3": [33, 34, 35, 18, 19, 46],
-                    "komit3": [18, 20, 21],
+                    "komit3": [18, 20, 21, 53],
                     "student_written3": [83, 85, 86, 87, 88, 89, 90, 91],
                     "summaries3": [0],
                     "exams3": [9],
@@ -949,15 +949,15 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4p": [0],
-                        "komit4p": [16, 17, 18, 44],
+                        "komit4p": [16, 17, 18, 44, 48],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
                         "notes4p": [0],
                     },
                     "تصميم تجارب": {
-                        "gate4p": [24, 25, 26, 27],
-                        "komit4p": [5, 6, 7, 33, 34, 36],
+                        "gate4p": [24, 25, 26, 27, 32, 33, 34, 35],
+                        "komit4p": [5, 6, 7, 33, 34, 36, 49],
                         "student_written4p": [0],
                         "summaries4p": [0],
                         "exams4p": [0],
@@ -1042,8 +1042,8 @@ resources = {
                         "notes4n": [0],
                     },
                     "تصميم تجارب": {
-                        "gate4n": [25, 26, 27, 28],
-                        "komit4n": [5, 6, 7, 16, 17, 23],
+                        "gate4n": [25, 26, 27, 28, 34, 35, 36, 37],
+                        "komit4n": [5, 6, 7, 16, 17, 23, 27],
                         "student_written4n": [0],
                         "summaries4n": [0],
                         "exams4n": [0],
@@ -1079,7 +1079,7 @@ resources = {
                     },
                     "نظم قواعد معرفة": {
                         "gate4i": [0],
-                        "komit4i": [0],
+                        "komit4i": [],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1121,7 +1121,7 @@ resources = {
                     },
                     "نظم قواعد معرفة": {
                         "gate4i": [0],
-                        "komit4i": [32, 33, 34, 35, 36],
+                        "komit4i": [32, 33, 34, 35, 36, 40, 41, 42],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1129,7 +1129,7 @@ resources = {
                     },
                     "بناء مترجمات": {
                         "gate4i": [0],
-                        "komit4i": [22, 23, 24, 38],
+                        "komit4i": [22, 23, 24, 38, 39],
                         "student_written4i": [0],
                         "summaries4i": [0],
                         "exams4i": [0],
@@ -1514,7 +1514,7 @@ resources = {
                 "practical": {
                     "تطبيقات شبكية": {
                         "gate5n": [0],
-                        "komit5n": [0],
+                        "komit5n": [5, 6, 7, 8, 9],
                         "student_written5n": [0],
                         "summaries5n": [0],
                         "exams5n": [0],
