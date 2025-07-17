@@ -20,7 +20,7 @@ resources = {
                 },
                 "📊 تحليل 1": {
                     "gate1": [0],
-                    "komit1": [74, 75, 76, 77 ,78, 79],
+                    "komit1": [74, 75, 76, 77, 78, 79],
                     "student_written1": [131, 132],
                     "summaries1": [0],
                     "exams1": [0],
@@ -144,6 +144,14 @@ resources = {
                     "exams1": [0],
                     "notes1": [0],
                 },
+                "🔥 ثقافة عامة": {
+                    "gate1": [0],
+                    "komit1": [0],
+                    "student_written1": [163],
+                    "summaries1": [0],
+                    "exams1": [0],
+                    "notes1": [0],
+                },
             },
             "practical": {
                 "➗ جبر خطي": {
@@ -165,7 +173,8 @@ resources = {
                 "💻 برمجة 2": {
                     "gate1": [28, 43, 44, 45, 46, 47, 53, 54, 55, 56],
                     "komit1": [24, 25, 26, 27, 28, 98, 99, 100, 101],
-                    "student_written1": [150, 151, 152, 153, 154, 155, 156, 158, 159],
+                    "student_written1":
+                    [150, 151, 152, 153, 154, 155, 156, 158, 159],
                     "summaries1": [0],
                     "exams1": [0],
                     "notes1": [0],
@@ -548,7 +557,8 @@ resources = {
                 "بنيان 1": {
                     "gate3": [21, 23, 25, 27, 29, 55],
                     "komit3": [5, 7, 8, 60],
-                    "student_written3": [31, 32, 33, 35, 37, 39, 41, 43, 45, 46],
+                    "student_written3":
+                    [31, 32, 33, 35, 37, 39, 41, 43, 45, 46],
                     "summaries3": [0],
                     "exams3": [0],
                     "notes3": [4, 5, 6, 7, 8, 9, 10, 11, 12, 18],
@@ -1678,5 +1688,34 @@ channel_ids = {
     "notes5i": -1002709871937,
 }
 
-temporary_culture_doc = 51
 practical_exam_schedule = 12
+
+# معرفات قنوات برامج الامتحانات
+exam_schedules_channels = {
+    # الهندسة المعلوماتية
+    "informatics_theoretical_exam": -1002430206491,  
+    "informatics_practical_exam": -1002430206491,  
+
+    # الهندسة المعمارية
+    "architecture_theoretical_exam": -1002000000003,
+    "architecture_practical_exam": -1002000000004,
+
+    # الهندسة المدنية
+    "civil_theoretical_exam": -1002000000005,
+    "civil_practical_exam": -1002000000006,
+
+    # الهندسة الطبية
+    "medical_theoretical_exam": -1002000000007,
+    "medical_practical_exam": -1002000000008,
+}
+
+exam_schedules_messages = {
+    "informatics_theoretical_exam": 6,
+    "informatics_practical_exam": 5,
+    "architecture_theoretical_exam": 3,
+    "architecture_practical_exam": 4,
+    "civil_theoretical_exam": 5,
+    "civil_practical_exam": 6,
+    "medical_theoretical_exam": 7,
+    "medical_practical_exam": 8,
+}
