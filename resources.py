@@ -116,7 +116,7 @@ resources = {
                     "gate1": [0],
                     "komit1": [45, 46, 47, 90, 102, 103, 104],
                     "student_written1": [0],
-                    "summaries1": [11, 12, 15],
+                    "summaries1": [22, 19, 20],
                     "exams1": [0],
                     "notes1": [37, 44],
                 },
@@ -379,7 +379,7 @@ resources = {
             "theoretical": {
                 "خوارزميات وبنى المعطيات": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [71, 72, 73, 75, 76, 77, 78, 79, 80, 81],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -387,7 +387,7 @@ resources = {
                 },
                 "نظرية الحوسبة": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [89, 90, 91, 94, 95, 96, 97, 98],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -395,7 +395,7 @@ resources = {
                 },
                 "اتصالات رقمية": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [100, 101, 102, 103, 104, 105],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -411,7 +411,7 @@ resources = {
                 },
                 "دارات منطقية": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [130, 131, 132, 133, 134],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -419,10 +419,10 @@ resources = {
                 },
                 "نظم تشغيل 1": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [122, 123, 124, 125, 126, 127, 128],
                     "student_written3": [0],
                     "summaries3": [0],
-                    "exams3": [0],
+                    "exams3": [22],
                     "notes3": [0],
                 },
             },
@@ -437,7 +437,7 @@ resources = {
                 },
                 "نظرية الحوسبة": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [111, 112, 113, 114, 115, 116, 117, 118, 119, 120],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
@@ -461,7 +461,7 @@ resources = {
                 },
                 "دارات منطقية": {
                     "gate3": [0],
-                    "komit3": [0],
+                    "komit3": [107, 108, 109],
                     "student_written3": [0],
                     "summaries3": [0],
                     "exams3": [0],
