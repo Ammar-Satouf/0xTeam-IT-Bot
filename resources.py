@@ -125,7 +125,7 @@ resources = {
                     "komit1": [17, 18, 19, 20, 21, 22, 97, 106],
                     "student_written1": [172, 58, 59, 60, 61, 62, 63, 64, 171, 173, 165, 166, 167, 168, 169],
                     "summaries1": [0],
-                    "exams1": [0],
+                    "exams1": [18],
                     "notes1": [0],
                 },
                 "📊 تحليل 2": {
@@ -1687,7 +1687,6 @@ channel_ids = {
     "notes5i": -1002709871937,
 }
 
-practical_exam_schedule = 12
 
 # معرفات قنوات برامج الامتحانات
 exam_schedules_channels = {
@@ -1709,8 +1708,8 @@ exam_schedules_channels = {
 }
 
 exam_schedules_messages = {
-    "informatics_theoretical_exam": 6,
-    "informatics_practical_exam": 5,
+    "informatics_theoretical_exam": 7,
+    "informatics_practical_exam": 0,
     "architecture_theoretical_exam": 3,
     "architecture_practical_exam": 4,
     "civil_theoretical_exam": 5,
