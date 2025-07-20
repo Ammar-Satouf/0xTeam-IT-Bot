@@ -1,7 +1,7 @@
 import os
 from telegram import ReplyKeyboardMarkup, KeyboardButton, Update
 from telegram.ext import ContextTypes
-from resources import resources, channel_ids, practical_exam_schedule, exam_schedules_channels, exam_schedules_messages
+from resources import resources, channel_ids, exam_schedules_channels, exam_schedules_messages
 from datetime import datetime
 from db import load_notified_users, add_notified_user
 from telegram.constants import ParseMode
