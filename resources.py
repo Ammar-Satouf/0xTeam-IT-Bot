@@ -903,7 +903,7 @@ resources = {
                         "komit4p": [26, 45, 46, 47],
                         "student_written4p": [0],
                         "summaries4p": [0],
-                        "exams4p": [0],
+                        "exams4p": [4],
                         "notes4p": [0],
                     },
                     "تحليل نظم مالية": {
