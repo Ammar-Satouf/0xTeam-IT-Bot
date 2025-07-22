@@ -30,7 +30,7 @@ resources = {
                     "gate1": [0],
                     "komit1": [0],
                     "student_written1": [120, 121, 161, 162, 135],
-                    "summaries1": [22],
+                    "summaries1": [22, 23],
                     "exams1": [8],
                     "notes1": [41],
                 },
